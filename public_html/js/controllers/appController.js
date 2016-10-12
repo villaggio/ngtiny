@@ -1,12 +1,15 @@
-app.controller('appController', ['$scope', function($scope) {
+app.controller('AppController', [function() {
     var vm = this;
     vm.nav = [
        {
         url:"#/",
-        title:"home"
+        title:"Home"
+       },{
+        url:"#/students",
+        title:"Anagrafica"
        },{
         url:"#/credits",
-        title:"credits"
+        title:"Crediti"
        },
     ];
     vm.ver = '1.0.0';

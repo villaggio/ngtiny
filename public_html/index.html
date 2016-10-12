@@ -7,10 +7,11 @@
     </title>    
     <link rel="stylesheet" type="text/css" media="all" href="lib/w3/w3.css" />	
     <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/bootstrap.min.css" />	
+    <link rel="stylesheet" type="text/css" media="all" href="css/font-awesome.min.css" />	 	
     <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />	 	
   </head>     
   <body ng-app="ngtiny">
-	<div id="all" class="container" ng-controller="appController as app">
+	<div id="all" class="container" ng-controller="AppController as app">
           <app-nav items="app.nav"></app-nav>
           <div ng-view></div>
           <app-footer ver="app.ver" today="app.today"></app-footer>
@@ -23,6 +24,7 @@
           
 	  <script src="js/app.js"></script>
           <script src="js/controllers/appController.js"></script>
+          <script src="js/controllers/studentsController.js"></script>
           <script src="js/directives/appNavDirective.js"></script>
           <script src="js/directives/appFooterDirective.js"></script>
 	</div>

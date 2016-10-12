@@ -5,6 +5,10 @@ app.config(function ($routeProvider) {
     .when('/', { 
       //controller: 'HomeController', 
       templateUrl: 'views/home.html' 
+    })
+    .when('/students', { 
+      controller: 'StudentsController', 
+      templateUrl: 'views/students.html' 
     }) 
     .when('/credits', { 
       //controller: 'PhotoController', 

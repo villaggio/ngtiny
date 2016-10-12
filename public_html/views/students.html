@@ -1,0 +1,64 @@
+<h1>
+    Anagrafica Studenti
+</h1>
+
+<div class="col-md-6 col-sm-12">
+<div class="well-sm">
+<ul class="list-group">
+  <li ng-repeat="stud in students" class="list-group-item">
+    <div class="">
+      <span>
+      <strong>
+          {{ stud.name }} {{ stud.surname }}
+      </strong>
+        - nato/a il {{ stud.borndate | date : 'dd/MM/yyyy' }} - {{ stud.sex }}
+      </span>
+      <div class="text-right">
+            <button class="btn btn-sm btn-info"  ng-click="showStudent($index)">Modifica</button>
+            <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)">Cancella</button>
+      </div>
+    </div>
+  </li>
+</ul>
+<button class="btn btn-sm btn-danger" ng-click="resetStudents()">Cancella tutto</button>
+</div>
+</div>
+    
+<div class="col-md-6 col-sm-12">
+    <form>
+         <div class="form-group col-md-6 col-sm-12">
+              <label for="exampleName1">Nome</label>
+              <input type="text" class="form-control" id="exampleName1" name="name" ng-model="student.name" placeholder="Inserire un nome">
+        </div>
+         <div class="form-group col-md-6 col-sm-12">
+              <label for="exampleSurname1">Cognome</label>
+              <input type="text" class="form-control" id="exampleSurname1" name="surname" ng-model="student.surname" placeholder="Inserire un cognome">
+        </div>
+        <div class="col-md-6 col-sm-12">
+        <fieldset class="form-group">
+              <legend>Sesso</legend>
+              <div class="form-check">
+                <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="sex" id="optionsSex1" ng-model="student.sex" value="Uomo">
+                      Uomo
+                </label>
+              </div>
+              <div class="form-check">
+              <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="sex" id="optionsSex2" ng-model="student.sex" value="Donna">
+                      Donna
+                </label>
+              </div>
+        </fieldset>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+              <label for="exampleId1">Nato il</label>
+              <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="student.borndate" placeholder="gg/mm/aaaa">
+        </div>
+        <div class="col-sm-12 text-center">
+        <button ng-click="saveStudent(student.index)" class="btn btn-info">Salva</button>
+        <button ng-click="resetStudent()" class="btn btn-primary">Nuovo</button>
+        </div>
+    </form>
+</div>
