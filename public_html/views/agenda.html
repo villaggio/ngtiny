@@ -1,0 +1,100 @@
+<h1>
+    Calendario delle lezioni
+</h1>
+
+    <div class="alert alert-warning">
+        <h4>Esercizio</h4>
+        <p>
+           Per completare questo esercizio servirà
+           gestire il caricamento dinamico del calendario e
+           attivare il comportamento di add edit e delete appoggiandosi
+           ad un form da realizzare sotto al calendario
+        </p>
+    </div>
+
+ <div class="agenda">
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Orario</th>
+                    <th>Lezione</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Single event in a single day -->
+                <tr>
+                    <td class="agenda-date" class="active" rowspan="1">
+                        <div class="dayofmonth">26</div>
+                        <div class="dayofweek">Saturday</div>
+                        <div class="shortdate text-muted">July, 2014</div>
+                    </td>
+                    <td class="agenda-time">
+                        5:30 AM
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Multiple events in a single day (note the rowspan) -->
+                <tr>
+                    <td class="agenda-date" class="active" rowspan="3">
+                        <div class="dayofmonth">24</div>
+                        <div class="dayofweek">Thursday</div>
+                        <div class="shortdate text-muted">July, 2014</div>
+                    </td>
+                    <td class="agenda-time">
+                        8:00 - 9:00 AM 
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">
+                        10:15 AM - 12:00 PM 
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">
+                        7:00 - 9:00 PM
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                          </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     
+    <h2>FORM DI CREAZIONE E MODIFICA DATA DI CALENDARIO</h2>
+</div>
