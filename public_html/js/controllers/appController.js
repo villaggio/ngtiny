@@ -8,6 +8,9 @@ app.controller('AppController', [function() {
         url:"#/students",
         title:"Anagrafica"
        },{
+        url:"#/agenda",
+        title:"Calendario"
+       },{
         url:"#/credits",
         title:"Crediti"
        },

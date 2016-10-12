@@ -10,8 +10,12 @@ app.config(function ($routeProvider) {
       controller: 'StudentsController', 
       templateUrl: 'views/students.html' 
     }) 
+    .when('/agenda', { 
+      controller: 'AgendaController', 
+      templateUrl: 'views/agenda.html' 
+    }) 
     .when('/credits', { 
-      //controller: 'PhotoController', 
+      //controller: 'CreditsController', 
       templateUrl: 'views/credits.html' 
     }) 
     .otherwise({ 
