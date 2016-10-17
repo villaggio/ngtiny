@@ -3,18 +3,17 @@
   <head>	     
     <meta charset="UTF-8" />	     
     <title>
-		NG-Fat
+		NG-Tiny
     </title>    
-    <link rel="stylesheet" type="text/css" media="all" href="lib/w3/w3.css" />	
     <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/bootstrap.min.css" />	
     <link rel="stylesheet" type="text/css" media="all" href="css/font-awesome.min.css" />	 	
     <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/agenda.css" />		 	
     <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />	 	
   </head>     
   <body ng-app="ngtiny">
-	<div id="all" class="container" ng-controller="AppController as app">
+	<div id="all" class="" ng-controller="AppController as app">
           <app-nav items="app.nav"></app-nav>
-          <div ng-view></div>
+          <div ng-view class="container"></div>
           <app-footer ver="app.ver" today="app.today"></app-footer>
           
 	  <script src="lib/jquery/jquery-3.1.0.min.js"></script>
