@@ -94,6 +94,12 @@ app.controller('AgendaController', ['$scope', function($scope) {
             vm.resetDay();
         vm.agenda.splice(index,1);
     };
+
+    vm.deleteEvent = function(parent, index){
+        var day = vm.agenda[parent];
+        day.events.splice(index,1);
+        vm.agenda.splice(parent,1,vm.getDay(day));
+    };
     
     vm.init();
 }]);
