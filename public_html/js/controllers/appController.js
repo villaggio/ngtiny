@@ -11,6 +11,9 @@ app.controller('AppController', [function() {
         url:"#/agenda",
         title:"Calendario"
        },{
+        url:"#/lessons",
+        title:"Presenze"
+       },{
         url:"#/credits",
         title:"Crediti"
        },

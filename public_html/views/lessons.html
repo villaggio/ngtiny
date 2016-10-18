@@ -1,0 +1,74 @@
+<h1>
+    Presenze e Assenze
+</h1>
+
+    <!-- div class="alert alert-warning">
+        <h4>Esercizio</h4>
+        <p>
+           Per completare questo esercizio servirà
+           gestire il caricamento dinamico del calendario e
+           attivare il comportamento di add edit e delete appoggiandosi
+           ad un form da realizzare sotto al calendario
+        </p>
+    </div -->
+
+ <div class="agenda">
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered" ng-show="agenda.length">
+            <thead>
+                <tr>
+                    <th>Matricola</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Presenze</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="student in students">
+                <!-- Single event in a single day -->
+                <tr ng-if="student.presences.length <= 1">
+                    <td class="agenda-date" class="active" colspan="{{ student.preseces.length?1:3  }}">
+                        
+                    </td>
+                    <td ng-if="student.presences.length" class="agenda-time">
+                      
+                    </td>
+                    <td ng-if="student.presences.length" class="agenda-events">
+                        <div class="agenda-event">
+                            {{ day.events[0].teacher }} <span ng-show="day.events[0].lesson">-</span>
+                            {{ day.events[0].lesson }} <span ng-show="day.events[0].argument">-</span>
+                            {{ day.events[0].argument }}
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="showEvent($index, 0)">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($index, 0)">Cancella</button>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="presence.length > 1" ng-repeat="event in day.events">
+                    <td class="agenda-date" class="active" rowspan="{{ day.events.length }}" ng-if="$index == 0">
+                       {{student.matr}}
+                    </td>
+                    <td class="agenda-time">
+                        {{student.name}}
+                    </td>
+                    <td class="agenda-time">
+                        {{student.surname}}
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            {{ presence.title }} <span ng-show="presence.hours">-</span>
+                            {{ presence.hours }} <span ng-show="presence.description">-</span>
+                            {{ presence.description }}
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="showPresence($parent.$index, $index)">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="deletePresence($parent.$index, $index)">Cancella</button>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     
+    <h2>FORM DI CREAZIONE E MODIFICA DATA DI CALENDARIO</h2>
+</div>
