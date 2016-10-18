@@ -15,24 +15,24 @@ app.controller('LessonsController', ['$scope', function($scope) {
     };
     
     vm.resetLesson = function(){
-        vm.day.index  = -1;
-        vm.day.date  = new Date();
-        vm.day.events = [];
-        vm.day.events.push({
-            from: 8.30,
-            to: 12.30,
-            lesson: 'Frontend Dev',
-            argument: 'AngularJS',
-            teacher: 'Fabio Fazio'
+        vm.lesson.index  = -1;
+        vm.lesson.title  = '';
+        vm.lesson.teacher = '';
+        vm.lesson.hours = parseInt(vm.lesson.hours);
+        vm.lesson.start = new Date();
+        vm.lesson.end = new Date();
+        vm.lesson.arguments = [];
+        vm.lesson.arguments.push({
+            title: 'JavaScript',
+            hours: 200,
+            description: 'Lezioni di Javascript fatte da VS e FF'
         });
-        vm.day.events.push({
-            from: 13.30,
-            to: 17.30,
-            lesson: 'Frontend Dev',
-            argument: 'AngularJS',
-            teacher: 'Fabio Fazio'
+        vm.lesson.arguments.push({
+            title: 'SQL',
+            hours: 16,
+            description: 'Lezioni di SQL fatte da RM'
         });
-        vm.day.index  = -1;
+        vm.lesson.index  = -1;
         
         
     };
