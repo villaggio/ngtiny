@@ -8,6 +8,9 @@ app.controller('AppController', [function() {
         url:"#/students",
         title:"Anagrafica"
        },{
+        url:"#/lessons",
+        title:"Lezioni"
+       },{
         url:"#/agenda",
         title:"Calendario"
        },{
@@ -17,5 +20,5 @@ app.controller('AppController', [function() {
     ];
     vm.ver = '1.0.0';
     vm.today = new Date();
-    
+
 }]);
