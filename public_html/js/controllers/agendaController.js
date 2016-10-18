@@ -18,20 +18,37 @@ app.controller('AgendaController', ['$scope', function($scope) {
         var eventDateFrom = new Date();
         var eventDateTo = new Date();
         eventDateFrom.setHours(8, 30);
-        eventDateTo.setHours(17, 30);
+        var eventDateFrom1 = new Date();
+        var eventDateTo1 = new Date();
+        eventDateFrom1.setHours(8, 30);
+        eventDateTo1.setHours(12, 30);
+        var eventDateFrom2 = new Date();
+        var eventDateTo2 = new Date();
+        eventDateFrom2.setHours(13, 30);
+        eventDateTo2.setHours(17, 30);
         vm.agenda.push(vm.getDay(day));
         day.events.push({
             from: eventDateFrom,
             to: eventDateTo,
-            lesson: 'Frontend Dev',
+            lesson: 'Frontend Dev 0',
             argument: 'AngularJS',
             teacher: 'Fabio Fazio'
         });
         vm.agenda.push(vm.getDay(day));
+        day.events.splice(0,1);
         day.events.push({
-            from: new Date(),
-            to: new Date(),
-            lesson: 'Frontend Dev',
+            from: eventDateFrom1,
+            to: eventDateTo1,
+            from: eventDateFrom1,
+            to: eventDateTo1,
+            lesson: 'Frontend Dev 1',
+            argument: 'AngularJS',
+            teacher: 'Fabio Fazio'
+        });
+        day.events.push({
+            from: eventDateFrom2,
+            to: eventDateTo2,
+            lesson: 'Frontend Dev 2',
             argument: 'AngularJS',
             teacher: 'Fabio Fazio'
         });
@@ -67,8 +84,8 @@ app.controller('AgendaController', ['$scope', function($scope) {
     // restituisce un nuovo event con valori clonati da e
     vm.getEvent = function(e){
         var event = {};
-        event.from  = e?e.from:new Date();
-        event.to = e?e.to:new Date();
+        event.from  = e?e.from:null;
+        event.to = e?e.to:null;
         event.teacher = e?e.teacher:null;
         event.lesson = e?e.lesson:null;
         event.argument = e?e.argument:null;
