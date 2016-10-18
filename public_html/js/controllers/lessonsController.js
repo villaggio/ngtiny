@@ -1,64 +1,108 @@
-app.controller('LessonsController', ['$scope', function($scope) {
+app.controller('AgendaController', ['$scope', function($scope) {
     var vm = $scope;
     
-    vm.lessons = []; // ARRAY
-    vm.lesson = {}; // OGGETTO
+    //DONE
+    vm.lessons = [];
+    vm.lesson = {};
 
+    //DONE
     vm.init = function(){
         vm.resetLessons();
         vm.resetLesson();
-        vm.lessons.push(vm.lesson); // reset su oggetto
+        //test
+        vm.loadFakeData();
+        console.log(vm.lessons);
     };
     
+    // TO DO
+    // metodo di inizializzazione dati per test
+    vm.loadFakeData = function(){
+        var day = vm.getDay();
+        var eventDateFrom = new Date();
+        var eventDateTo = new Date();
+        eventDateFrom.setHours(8, 30);
+        eventDateTo.setHours(17, 30);
+        vm.agenda.push(vm.getDay(day));
+        day.events.push({
+            from: eventDateFrom,
+            to: eventDateTo,
+            lesson: 'Frontend Dev',
+            argument: 'AngularJS',
+            teacher: 'Fabio Fazio'
+        });
+        vm.agenda.push(vm.getDay(day));
+        day.events.push({
+            from: new Date(),
+            to: new Date(),
+            lesson: 'Frontend Dev',
+            argument: 'AngularJS',
+            teacher: 'Fabio Fazio'
+        });
+        vm.agenda.push(vm.getDay(day));
+    };
+
+    // DONE
+    // pulizia lista di lesson in lessons  
     vm.resetLessons = function(){
         vm.lessons.length = 0;
     };
     
+    // DONE
+    // pulizia oggetto lesson
     vm.resetLesson = function(){
         vm.lesson.index  = -1;
-        vm.lesson.title  = '';
-        vm.lesson.teacher = '';
-        vm.lesson.hours = parseInt(vm.lesson.hours);
+        vm.lesson.title = null;
+        vm.lesson.teacher = null;
+        vm.lesson.hours = null;
         vm.lesson.start = new Date();
         vm.lesson.end = new Date();
-        vm.lesson.arguments = [];
-        vm.lesson.arguments.push({
-            title: 'JavaScript',
-            hours: 200,
-            description: 'Lezioni di Javascript fatte da VS e FF'
-        });
-        vm.lesson.arguments.push({
-            title: 'SQL',
-            hours: 16,
-            description: 'Lezioni di SQL fatte da RM'
-        });
-        vm.lesson.index  = -1;
         
-        
+        if(vm.lesson.arguments)
+            vm.lesson.arguments.length = 0;
+        else
+            vm.lesson.arguments = [];
     };
     
-    vm.getLesson = function(d){
+    // restituisce un nuovo day con valori clonati da d
+    vm.getDay = function(d){
         var day = {};
-        day.date  = d.day;
+        day.date  = d?d.date:new Date();
+        day.events = [];
+        if(d && d.events.length)
+            for(var i=0;i<d.events.length;i++)
+                day.events.push(vm.getEvent(d.events[i]));
         return day;
     };
+
+    // restituisce un nuovo event con valori clonati da e
+    vm.getEvent = function(e){
+        var event = {};
+        event.from  = e?e.from:new Date();
+        event.to = e?e.to:new Date();
+        event.teacher = e?e.teacher:null;
+        event.lesson = e?e.lesson:null;
+        event.argument = e?e.argument:null;
+        return event;
+    };
     
-    vm.saveLesson = function(index){
+    vm.saveDay = function(index){
         if(index>=0){
-            vm.lessons.splice(index, 1, vm.getLesson(vm.lesson));
+            vm.agenda.splice(index, 1, vm.getDay(vm.day));
         }else{
-            vm.lessons.push(vm.getLesson(vm.lesson));
-            vm.resetLesson();
+            vm.agenda.push(vm.getDay(vm.day));
+            vm.resetDay();
         }
     };
     
-    vm.showLesson = function(index){
-        vm.lesson = vm.getLesson(vm.lessons[index]);
-        vm.lesson.index = index;
+    vm.showDay = function(index){
+        vm.day = vm.getDay(vm.agenda[index]);
+        vm.day.index = index;
     };
     
     vm.deleteDay = function(index){
-        vm.lessons.splice(index,1);
+        if(vm.day.index == index)
+            vm.resetDay();
+        vm.agenda.splice(index,1);
     };
     
     vm.init();
