@@ -29,6 +29,10 @@
                         <div class="dayofmonth">{{ day.date | date : 'dd' }}</div>
                         <div class="dayofweek">{{ day.date | date : 'EEEE' }}</div>
                         <div class="shortdate text-muted">{{ day.date | date : 'MMMM, yyyy' }}</div>
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-info"  ng-click="showDay($index)"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-click="deleteDay($index)"><i class="fa fa-trash"></i></button>
+                        </div>
                     </td>
                     <td ng-if="day.events.length" class="agenda-time">
                         {{ day.events[0].from | date : 'shortTime' }} <span ng-show="event.to"> - {{ day.events[0].to | date : 'shortTime' }}</span>
@@ -39,8 +43,8 @@
                             {{ day.events[0].lesson }} <span ng-show="day.events[0].argument">-</span>
                             {{ day.events[0].argument }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent($index, 0)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($index, 0)">Cancella</button>
+                                <button class="btn btn-sm btn-info"  ng-click="showEvent($index, 0)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($index, 0)"><i class="fa fa-trash"></i></button>
                           </div>
                         </div>
                     </td>
@@ -50,6 +54,11 @@
                         <div class="dayofmonth">{{ day.date | date : 'dd' }}</div>
                         <div class="dayofweek">{{ day.date | date : 'EEEE' }}</div>
                         <div class="shortdate text-muted">{{ day.date | date : 'MMMM, yyyy' }}</div>
+                        
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-info"  ng-click="showDay($index)"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-click="deleteDay($index)"><i class="fa fa-trash"></i></button>
+                        </div>
                     </td>
                     <td class="agenda-time">
                         {{ event.from | date : 'shortTime' }} <span ng-show="event.to"> - {{ event.to | date : 'shortTime' }}</span>
@@ -60,9 +69,9 @@
                             {{ event.lesson }} <span ng-show="event.argument">-</span>
                             {{ event.argument }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent($parent.$index, $index)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($parent.$index, $index)">Cancella</button>
-                          </div>
+                                <button class="btn btn-sm btn-info"  ng-click="showEvent($parent.$index, $index)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($parent.$index, $index)"><i class="fa fa-trash"></i></button>
+                            </div>
                         </div>
                     </td>
                 </tr>
