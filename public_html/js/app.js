@@ -12,6 +12,10 @@ app.conf=function ($routeProvider) {
     .when('/agenda', { 
       controller: 'AgendaController', 
       templateUrl: 'views/agenda.html' 
+    })
+    .when('/lessons', { 
+      controller: 'LessonsController', 
+      templateUrl: 'views/lessons.html' 
     }) 
     .when('/credits', { 
       //controller: 'CreditsController', 
