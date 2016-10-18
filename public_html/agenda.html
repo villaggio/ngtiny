@@ -1,0 +1,164 @@
+<h1>
+    Calendario delle lezioni
+</h1>
+
+    <div class="alert alert-warning">
+        <h4>Esercizio</h4>
+        <p>
+          Tentativo di soluzione di Roberta Facchi
+       
+        </p>
+    </div>
+
+ <div class="agenda">
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Orario</th>
+                    <th>Lezione</th>
+                    <th>Modifica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Single event in a single day -->
+                <tr ng-repeat="d in agenda|orderBy:'date'">
+                    <td class="agenda-date active" rowspan="">
+                        <div class="dayofmonth">{{d.date|date:'dd'}}</div>
+                        <div class="dayofweek">{{d.date|date:'EEEE'}}</div>
+                        <div class="shortdate text-muted">{{d.date|date:'MMMM yyyy'}}</div>
+                        
+                    </td>
+                    <td ng-repeat="e in d.events" class="agenda-time">
+                        Dalle ore: {{e.from}}<br>alle ore:{{e.to}}
+                    </td>
+                    <td ng-repeat="e in d.events" class="agenda-event">
+                        Docente:{{e.teacher}}
+                        Materia:{{e.lesson}}
+                        Argomento:{{e.argument}}
+                       
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <button class="btn btn-sm btn-info"  ng-click="showDay($index)">Modifica</button>
+                           
+                            <button class="btn btn-sm btn-danger" ng-click="deleteDay($index)">Cancella</button>
+                        </div>
+                    </td>
+                </tr>
+                <!--
+                <tr ng-repeat="day in agenda">
+                    <td class="agenda-date active" rowspan="1">
+                        <div class="dayofmonth">{{day.date|date:'dd'}}</div>
+                        <div class="dayofweek">{{day.date|date:'EEEE'}}</div>
+                        <div class="shortdate text-muted">{{day.date|date:'MMMM yyyy'}}</div>
+                    </td>
+                    <div class="agenda-event" ng-repeat="event in day.events">
+                        <td class="agenda-time">
+                            Dalle ore: {{event.from}}<br>
+                            alle ore:{{event.to}}
+                        </td>
+                        <td class="agenda-events">
+                            {{event.teacher}}
+                            {{event.lesson}}
+                            {{event.argument}}
+                                
+                                <div class="text-right">
+                                    <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                                </div>
+                        </td>
+                     </div>
+                </tr>
+
+             Multiple events in a single day (note the rowspan) 
+                <tr>
+                    <td class="agenda-date active" rowspan="3">
+                        <div class="dayofmonth">24</div>
+                        <div class="dayofweek">Thursday</div>
+                        <div class="shortdate text-muted">July, 2014</div>
+                    </td>
+                    <td class="agenda-time">
+                        8:00 - 9:00 AM 
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">
+                        10:15 AM - 12:00 PM 
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">
+                        7:00 - 9:00 PM
+                    </td>
+                    <td class="agenda-events">
+                        <div class="agenda-event">
+                            Docente - Materia - Argomento
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info"  ng-click="">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="">Cancella</button>
+                          </div>
+                    </div>
+                    </td>
+                </tr>-->
+            </tbody>
+        </table>
+    </div>
+     
+    <h2>FORM DI CREAZIONE E MODIFICA DATA DI CALENDARIO</h2>
+    <div class="col-md-6 col-sm-12">
+        <form>
+            <div class="form-group col-md-6 col-sm-12">
+                <label for="exampleData1">Data</label>
+                <input type="date" class="form-control" data-date-format="dd/mm/yy" data-date-language="it" name="date" 
+                       ng-model="day.date" placeholder="gg/mm/aaaa">
+            </div>
+            <div ng-model="event">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="exampleTime1">Orario inizio</label>
+                    <select class="form-control" onchange="changeFrom()" id="selectFrom" name="time" ng-model="event.from">
+                      <option value="8.30">8.30</option>
+                      <option value="10.30">10.30</option>
+                      <option value="13.30">13.30</option>
+                      <option value="15.30">15.30</option>
+                    </select>
+                     <label for="exampleTime1">Orario uscita</label>
+                    <select class="form-control" onchange="changeTo()" id="selectTo" name="time" ng-model="event.to">
+                      <option value="10.30">10.30</option>
+                      <option value="12.30">12.30</option>
+                      <option value="15.30">15.30</option>
+                      <option value="17.30">17.30</option>
+                    </select>
+                </div> 
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="exampleClass1">Lezione</label>             
+                    <input type="text" class="form-control" id="exampleClass1" name="class" ng-model="event.teacher" placeholder="Inserire docente">
+                    <input type="text" class="form-control" id="exampleClass1" name="class" ng-model="event.lesson" placeholder="Inserire materia">
+                    <input type="text" class="form-control" id="exampleClass1" name="class" ng-model="event.argument" placeholder="Inserire argomento">
+                </div>
+            </div>
+            <div class="col-sm-12 text-center">
+                <button ng-click="saveDay(day.index)" class="btn btn-info">Salva</button>
+                <button ng-click="resetDay()" class="btn btn-primary">Nuovo</button>
+            </div>
+        </form>
+    </div>
