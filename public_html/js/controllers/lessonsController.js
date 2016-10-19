@@ -80,6 +80,11 @@ app.controller('LessonsController', ['$scope', function($scope) {
             vm.resetStudent();
         vm.studTot.splice(index,1);
     };
+//    vm.deletePresence(key, index){
+//        var student = vm.studTot[key];
+//        student.presTot.splice(index,1);
+//        vm.studTot.splice(key,1,vm.getStudent(student));        
+//    };
     
     vm.init();
     
