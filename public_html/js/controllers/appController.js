@@ -13,7 +13,7 @@ app.controller('AppController', [function() {
        },{
         url:"#/credits",
         title:"Crediti"
-       },
+       }
     ];
     vm.ver = '1.0.0';
     vm.today = new Date();

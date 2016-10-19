@@ -1,7 +1,6 @@
 app.controller('HomeController', ['$scope', function($scope) {
    var vm = $scope;
    vm.init = function(){
-       vm.a = 123;
         vm.parameters = {
            logo: 'img/logo.png',
            scuola: 'Villaggio del Ragazzo',
@@ -9,7 +8,7 @@ app.controller('HomeController', ['$scope', function($scope) {
            sottotitolo: 'Centro formazione professionale',
            centroPagina: 'Registro presenza allievi'
        };
-    }
+    },
     vm.init();
 }
 ]);

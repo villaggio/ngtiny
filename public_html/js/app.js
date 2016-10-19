@@ -20,5 +20,5 @@ app.conf=function ($routeProvider) {
     .otherwise({ 
       redirectTo: '/' 
     }); 
-}
+},
 app.config(app.conf);
