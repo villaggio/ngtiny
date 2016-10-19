@@ -62,12 +62,17 @@ app.controller('AgendaController', ['$scope', function($scope) {
     
     // pulizia oggetto day
     vm.resetDay = function(){
+        vm.day = vm.getDay();
         vm.day.index  = -1;
-        vm.day.date  = new Date();
-        if(vm.day.events)
-            vm.day.events.length = 0;
-        else
-            vm.day.events = [];
+    };
+
+    vm.resetEvent = function(){
+        vm.event = vm.getEvent();
+        vm.event.index  = -1;
+    };
+
+    vm.resetEvents = function(){
+        vm.day.events.length  = 0;
     };
     
     // restituisce un nuovo day con valori clonati da d
@@ -101,21 +106,33 @@ app.controller('AgendaController', ['$scope', function($scope) {
         }
     };
     
+    vm.saveEvent = function(index){
+        if(index>=0){
+            vm.day.events.splice(index, 1, vm.getEvent(vm.event));
+        }else{
+            vm.day.events.push(vm.getEvent(vm.event));
+            vm.resetEvent();
+        }
+    };
+    
     vm.showDay = function(index){
         vm.day = vm.getDay(vm.agenda[index]);
         vm.day.index = index;
     };
     
+    vm.showEvent = function(index){
+        vm.event = vm.getEvent(vm.day.events[index]);
+        vm.event.index = index;
+    };
+    
     vm.deleteDay = function(index){
-        if(vm.day.index == index)
-            vm.resetDay();
+        vm.resetDay();
         vm.agenda.splice(index,1);
     };
 
-    vm.deleteEvent = function(parent, index){
-        var day = vm.agenda[parent];
-        day.events.splice(index,1);
-        vm.agenda.splice(parent,1,vm.getDay(day));
+    vm.deleteEvent = function(index){
+        vm.resetEvent();
+        vm.day.events.splice(index,1);
     };
     
     vm.init();
