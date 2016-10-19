@@ -5,7 +5,7 @@
  ogni "argument" sarà come segue {"title":string, "hours":int , "description":string} -->
 
 <h1 class="text-center">
-    Registro lezioni corso
+    Registro materie corso
 </h1>
 
     <!-- div class="alert alert-warning">
@@ -32,7 +32,7 @@
                 <!-- Single event in a single day -->
                 <tr ng-if="lesson.arguments.length <= 1">
                     <td class="lessons-date" class="active" colspan="{{ lesson.arguments.length?1:3  }}">
-                        <div> {{ lesson.materia }} 
+                        <div> {{ lesson.title }} 
                             <span ng-show='lesson.teacher'> - {{ lesson.teacher }} <br/> </span>
                             <span ng-show='lesson.hours'> - Ore Previste: {{ lesson.hours }} <br/> </span>
                             <span ng-show='lesson.start'> - Inizio Lezioni: {{ lesson.start | date }} <br/> </span>
@@ -78,89 +78,95 @@
                         </div>
                     </td>
                     <td class="lessons-time">
-                        Tema lezione: {{ lesson.arguments[0].title }}
+                        Tema lezione: {{ lesson.arguments.title }}
                     </td>
-                    <td class="agenda-events">
-                        <div class="agenda-event">
-                            {{ event.teacher }} <span ng-show="event.lesson">-</span>
-                            {{ event.lesson }} <span ng-show="event.argument">-</span>
-                            {{ event.argument }}
+                    <td class="lessons-arguments">
+                        <div class="lessons-argument">
+                            Ore Dedicate: {{ lesson.arguments.hours }} <br/>
+                            <span ng-show="lesson.arguments.description"> - {{ lesson.arguments.description }}</span>
+                            
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent(parent, $index)"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent(parent, $index)"><i class="fa fa-trash"></i></button>
-                            </div>
+                                <button class="btn btn-sm btn-info"  ng-click="showArgument(parent, $index)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteArgument(parent, $index)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="text-center">
-            <button class="btn btn-sm btn-danger" ng-disabled="agenda.length < 1" ng-click="resetAgenda()"><i class="fa fa-trash"></i> Cancella tutto</button>
+            <button class="btn btn-sm btn-danger" ng-disabled="lessons.length < 1" ng-click="resetLessons()"><i class="fa fa-trash"></i> Cancella tutto</button>
         </div>
     </div>
 </div>
     
 <div class="col-sm-12">
     <div class="alert" ng-class="{'alert-warning' : (day.index >= 0), 'alert-info' : !(day.index >= 0) }">
-        <h3 class="text-center" ng-show="day.index >= 0">Modifica giornata</h3>
-        <h3 class="text-center" ng-hide="day.index >= 0">Nuova giornata</h3>
+        <h3 class="text-center" ng-show="lesson.index >= 0">Modifica materia del corso</h3>
+        <h3 class="text-center" ng-hide="lesson.index >= 0">Nuova materia del corso</h3>
         <form class="panel-body">
             <div class="form-group col-sm-12">
-                  <label for="exampleId1">Data di riferimento</label>
-                  <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="day.date" placeholder="gg/mm/aaaa">
+                  <label for="exampleId1">Tema</label>
+                  <input type="text" class="form-control" data-language="it" name="title" ng-model="lesson.title" placeholder="Inserisci tema">
+            </div>
+            <div class="form-group col-sm-12">
+                  <label for="exampleId1">Insegnante</label>
+                  <input type="text" class="form-control" data-language="it" name="teacher" ng-model="lesson.teacher" placeholder="Inserisci insegnante">
+            </div>
+            <div class="form-group col-sm-12">
+                  <label for="exampleId1">Ore totali prestabilite</label>
+                  <input type="number" class="form-control" data-language="it" name="hours" ng-model="lesson.hours" placeholder="Inserisci il monte ore">
+            </div>
+            <div class="form-group col-sm-6 col-xs-12">
+                  <label>Inizio</label>
+                  <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="lesson.start" placeholder="gg/mm/aaaa">
+            </div>
+            <div class="form-group col-sm-6 col-xs-12">
+                  <label>Fine</label>
+                  <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="lesson.end" placeholder="gg/mm/aaaa">
             </div>
             
             <div class="col-sm-12" ng-show="(day.index != -1)">
                 <div class="well well-sm panel-body">
                     <h3 class="text-center">
-                        Lezioni giornaliere
+                        Argomenti
                     </h3>
                     <div class="col-md-6 col-sm-12">
-                        <ul class="list-group" ng-show="(day.events.length)">
-                          <li ng-repeat="event in day.events" class="list-group-item">
-                                {{ event.from | date : 'shortTime'  }} <span ng-show="event.to">-</span>
-                                {{ event.to | date : 'shortTime'  }} <span ng-show="event.teacher">-</span>
-                                {{ event.teacher }} <span ng-show="event.lesson">-</span>
-                                {{ event.lesson }} <span ng-show="event.argument">-</span>
-                                {{ event.argument }}
-                              <div class="text-right">
+                        <ul class="list-group" ng-show="(lesson.arguments.length)">
+                          <li ng-repeat="argument in lesson.arguments" class="list-group-item">
+                                {{ argument.title }}
+                                <span ng-show="argument.hours">- {{ argument.hours }}</span>
+                                <span ng-show="argument.description">- {{ argument.description }}</span>
+                                 
+                            <!-- div class="text-right">
                                     <button class="btn btn-sm btn-info"  ng-click="showStudent($index)"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)"><i class="fa fa-trash"></i></button>
-                              </div>
+                            </div -->
                           </li>
                         </ul>
                         <div class="text-center">
-                            <button ng-show="(day.events.length)" class="btn btn-sm btn-danger" ng-click="resetEvents(day.index)"><i class="fa fa-trash"></i> Cancella tutto</button>
+                            <button ng-show="(lesson.arguments.length)" class="btn btn-sm btn-danger" ng-click="resetArguments(lesson.index)"><i class="fa fa-trash"></i> Cancella tutto</button>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div>
-                            <h4 class="text-center" ng-show="event.index >= 0">Modifica lezione</h3>
-                            <h4 class="text-center" ng-hide="event.index >= 0">Nuova lezione</h3>
+                            <h4 class="text-center" ng-show="argument.index >= 0">Modifica argomento</h3>
+                            <h4 class="text-center" ng-hide="argument.index >= 0">Nuovo argomento</h3>
                             <div class="form-group col-md-6 col-sm-12">
-                                 <label>Insegnante</label>
-                                 <input type="text" class="form-control" ng-model="event.techer" placeholder="Inserire il docente">
+                                 <label>Argomento</label>
+                                 <input type="text" class="form-control" ng-model="argument.title" placeholder="Inserire l'argomento">
                            </div>
                             <div class="form-group col-md-6 col-sm-12">
                                  <label>Lezione</label>
-                                 <input type="text" class="form-control" ng-model="event.lesson" placeholder="Inserire la lezione">
+                                 <input type="number" class="form-control" ng-model="argument.hours" placeholder="Inserire ore dedicate">
                            </div>
                            <div class="form-group col-xs-12">
-                                 <label>Argomento</label>
-                                 <textarea type="textarea" class="form-control" ng-model="event.argument" placeholder="Inserire l'argomento"></textarea>
+                                 <label>Descrizione</label>
+                                 <textarea type="textarea" class="form-control" ng-model="argument.description" placeholder="Sunto dei temi trattati"></textarea>
                            </div>
-
-                          <div class="form-group col-sm-6 col-xs-12">
-                                 <label>Dalle</label>
-                                 <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="evenet.from" placeholder="gg/mm/aaaa">
-                           </div>
-                           <div class="form-group col-sm-6 col-xs-12">
-                                 <label>Alle</label>
-                                 <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="evenet.to" placeholder="gg/mm/aaaa">
-                           </div>
+                            
                            <div class="col-sm-12 text-center">
-                               <button ng-click="saveEvent(day.index, event.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Lezione</button>
-                               <button ng-click="resetEvent()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Lezione</button>
+                               <button ng-click="saveArgument(lesson.index, argument.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Argomento</button>
+                               <button ng-click="resetArgument()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuovo Argomento</button>
                            </div>
                         </div> 
                     </div> 
@@ -168,8 +174,8 @@
             </div>
             <hr/>
             <div class="col-sm-12 text-center">
-                <button ng-click="saveDay(day.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Giornata</button>
-                <button ng-click="resetDay()" ng-disabled="day.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Giornata</button>
+                <button ng-click="saveLesson(lesson.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Materia</button>
+                <button ng-click="resetLesson()" ng-disabled="lesson.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Materia</button>
             </div>
         </form>
     </div>
