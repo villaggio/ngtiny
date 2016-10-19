@@ -3,7 +3,7 @@ app.directive('appFooter', function() {
     restrict: 'E', 
     scope: { 
       ver: '=',
-      today: '=',
+      today: '='
     }, 
     templateUrl: 'js/directives/appFooter.html' 
   }; 
