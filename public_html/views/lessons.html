@@ -4,7 +4,7 @@
 
     <div class="agenda">
     <div class="table-responsive">
-        <table class="table table-condensed table-bordered" ng-show="agenda.length">
+        <table class="table table-condensed table-bordered" ng-show="studTot.length">
             <thead>
                 <tr>
                     <th>Matricola</th>
@@ -12,14 +12,14 @@
                     <th>Presenze</th>
                 </tr>
             </thead>
-            <tbody ng-repeat="student in studTot">
+            <tbody ng-repeat="(key, student) in studTot">
                 <!-- Single event in a single day -->
                 <tr ng-if="student.presTot.length <= 1">
-                    <td class="agenda-date" class="active" colspan="{{ student.presTot?1:3  }}">
+                    <td class="agenda-date" class="active">
                         {{student.matr}}
                     </td>
-                    <td>
-                         {{student.surname}} {{student.name}}
+                    <td class="agenda-events" colspan="{{ student.presTot.length?1:2  }}">
+                        {{student.surname}} {{student.name}}
                     </td>
                     <td ng-if="student.presTot.length" class="agenda-events">
                         <div class="agenda-event">
@@ -27,9 +27,9 @@
                             {{ student.presTot[0].hours }} <span ng-show="student.presTot[0].description">-</span>
                             {{ student.presTot[0].description }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent($index, 0)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($index, 0)">Cancella</button>
-                          </div>
+                                <button class="btn btn-sm btn-info"  ng-click="showEvent(key, 0)">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent(key, 0)">Cancella</button>
+                           </div>
                         </div>
                     </td>
                 </tr>
@@ -42,67 +42,12 @@
                     </td>
                     <td class="agenda-events">
                         <div class="agenda-event">
-                           {{ student.presTot[0].title }} <span ng-show="student.presTot[0].hours">-</span>
-                            {{ student.presTot[0].hours }} <span ng-show="student.presTot[0].description">-</span>
-                            {{ student.presTot[0].description }}
-                            <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent($parent.$index, $index)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($parent.$index, $index)">Cancella</button>
-                          </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <tbody ng-repeat="student in students">
-                <!-- Single event in a single day -->
-                <tr ng-if="student.presences.length <= 1">
-                    <td class="agenda-date" class="active" colspan="{{ student.preseces.length?1:3  }}">
-
-                    </td>
-                    <td ng-if="student.presences.length" class="agenda-time">
-
-                    </td>
-                    <td ng-if="student.presences.length" class="agenda-events">
-                        <div class="agenda-event">
-                            {{ day.events[0].teacher }} <span ng-show="day.events[0].lesson">-</span>
-                            {{ day.events[0].lesson }} <span ng-show="day.events[0].argument">-</span>
-                            {{ day.events[0].argument }}
-                            <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent($index, 0)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent($index, 0)">Cancella</button>
-                          </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr ng-if="presence.length > 1" ng-repeat="event in day.events">
-                    <td class="agenda-date" class="active" rowspan="{{ day.events.length }}" ng-if="$index == 0">
-                       {{student.matr}}
-                    </td>
-                    <td class="agenda-time">
-                        {{student.name}}
-                    </td>
-                    <td class="agenda-time">
-                        {{student.surname}}
-                    </td>
-                    <td class="agenda-events">
-                        <div class="agenda-event">
-                            {{ presence.title }} <span ng-show="presence.hours">-</span>
+                           {{ presence.title }} <span ng-show="presence.hours">-</span>
                             {{ presence.hours }} <span ng-show="presence.description">-</span>
                             {{ presence.description }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showPresence($parent.$index, $index)">Modifica</button>
-                                <button class="btn btn-sm btn-danger" ng-click="deletePresence($parent.$index, $index)">Cancella</button>
+                                <button class="btn btn-sm btn-info"  ng-click="showEvent(key, $index)">Modifica</button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent(key, $index)">Cancella</button>
                           </div>
                         </div>
                     </td>

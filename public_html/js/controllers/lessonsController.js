@@ -1,21 +1,35 @@
 app.controller('LessonsController', ['$scope', function($scope) {
     var vm = $scope;
-    var studTot=[];
-    var student={};
+    vm.studTot=[];
+    vm.student={};
     
      vm.init = function(){
         vm.resetStudTot();
         vm.resetStudent();
         vm.loadFakeData();
+        console.log(vm.studTot);
     };
     vm.loadFakeData = function(){
-        var student = vm.getStudent();
+        var student = vm.getStudent({
+            name: "Super",
+            surname: "Pippo",
+            matr: 12345,
+            presTot: []
+        });
         vm.studTot.push(vm.getStudent(student));
-        student.presTot.push({
+        
+        student.presTot.push(vm.getPresence({
             title: 'frontend development',
             hours: 4,
             description:'Angular js'
-        });
+        }));
+        vm.studTot.push(vm.getStudent(student));
+        student.presTot.push(vm.getPresence({
+            title: 'backend development',
+            hours: 43,
+            description:'Laravel PHP' 
+        }));
+        vm.studTot.push(vm.getStudent(student));
     };
     vm.resetStudTot = function(){
         vm.studTot.length = 0;
@@ -30,6 +44,8 @@ app.controller('LessonsController', ['$scope', function($scope) {
     };
     vm.getStudent = function(d){
         var student = {};
+        student.name  = d?d.name: '';
+        student.surname  = d?d.surname: '';
         student.matr  = d?d.matr: '';
         student.presTot = [];
         if(d && d.presTot.length)
