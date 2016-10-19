@@ -1,88 +1,70 @@
 app.controller('LessonsController', ['$scope', function($scope) {
     var vm = $scope;
+    var studTot=[];
+    var student={};
     
-    vm.students = [];
-    vm.presence = {};
-
-    vm.init = function(){
-        vm.resetStudents();
-        vm.resetPresence();
-        //test
+     vm.init = function(){
+        vm.resetStudTot();
+        vm.resetStudent();
         vm.loadFakeData();
-        
     };
-    
-    // metodo di inizializzazione dati per test
     vm.loadFakeData = function(){
-//        var day = vm.getDay();
-//        var eventDateFrom = new Date();
-//        var eventDateTo = new Date();
-//        eventDateFrom.setHours(8, 30);
-//        eventDateTo.setHours(17, 30);
-        vm.students.push(vm.getPresence(presence));
-        student.presence.push({
-            title: '',
-            hours: integer,
-            description: ''
+        var student = vm.getStudent();
+        vm.studTot.push(vm.getStudent(student));
+        student.presTot.push({
+            title: 'frontend development',
+            hours: 4,
+            description:'Angular js'
         });
-       
-
-    // pulizia lista di day in agenda    
-    vm.resetAgenda = function(){
-        vm.student.length = 0;
     };
-    
-    // pulizia oggetto day
-    vm.resetDay = function(){
-        vm.day.index  = -1;
-        vm.day.date  = new Date();
-        if(vm.day.events)
-            vm.day.events.length = 0;
+    vm.resetStudTot = function(){
+        vm.studTot.length = 0;
+    };
+     vm.resetStudent = function(){
+        vm.student.index  = -1;
+        vm.student.matr  = '';
+        if(vm.student.presTot)
+            vm.student.presTot.length = 0;
         else
-            vm.day.events = [];
+            vm.student.presTot = [];
+    };
+    vm.getStudent(d){
+        var student = {};
+        student.matr  = d?d.matr: '';
+        student.presTot = [];
+        if(d && d.presTot.length)
+            for(var i=0;i<d.presTot.length;i++)
+                student.presTot.push(vm.getPresence(d.presTot[i]));
+        return student;
+    };
+    vm.getPresence(e){
+        var presence = {};
+        presence.title= e?e.title:null;
+        presence.hours=  e?e.hours:null;
+        presence.description= e?e.description:null;
+        return presence;        
     };
     
-    // restituisce un nuovo day con valori clonati da d
-    vm.getDay = function(d){
-        var day = {};
-        day.date  = d?d.date:new Date();
-        day.events = [];
-        if(d && d.events.length)
-            for(var i=0;i<d.events.length;i++)
-                day.events.push(vm.getEvent(d.events[i]));
-        return day;
-    };
-
-    // restituisce un nuovo event con valori clonati da e
-    vm.getEvent = function(e){
-        var event = {};
-        event.from  = e?e.from:new Date();
-        event.to = e?e.to:new Date();
-        event.teacher = e?e.teacher:null;
-        event.lesson = e?e.lesson:null;
-        event.argument = e?e.argument:null;
-        return event;
-    };
-    
-    vm.saveDay = function(index){
+    vm.saveStudent = function(index){
         if(index>=0){
-            vm.agenda.splice(index, 1, vm.getDay(vm.day));
+            vm.studTot.splice(index, 1, vm.getStudent(vm.student));
         }else{
-            vm.agenda.push(vm.getDay(vm.day));
-            vm.resetDay();
+            vm.studTot.push(vm.getStudent(vm.student));
+            vm.resetStudent();
         }
     };
     
-    vm.showDay = function(index){
-        vm.day = vm.getDay(vm.agenda[index]);
-        vm.day.index = index;
+    vm.showStudent = function(index){
+        vm.student = vm.getStudent(vm.studTot[index]);
+        vm.student.index = index;
     };
     
-    vm.deleteDay = function(index){
-        if(vm.day.index == index)
-            vm.resetDay();
-        vm.agenda.splice(index,1);
+    vm.deleteStudent = function(index){
+        if(vm.student.index == index)
+            vm.resetStudent();
+        vm.studTot.splice(index,1);
     };
     
     vm.init();
+    
 }]);
