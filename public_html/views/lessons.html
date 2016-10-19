@@ -33,10 +33,10 @@
                 <tr ng-if="lesson.arguments.length <= 1">
                     <td class="lessons-date" class="active" colspan="{{ lesson.arguments.length?1:3  }}">
                         <div> {{ lesson.materia }} 
-                            <span ng-show='lesson.teacher'> - {{ lesson.teacher }} </span>
-                            <span ng-show='lesson.hours'> - Ore Previste: {{ lesson.hours }} </span>
-                            <span ng-show='lesson.start'> - Inizio Lezioni: {{ lesson.start | date }} </span>
-                            <span ng-show='lesson.end'> - Fine Lezioni: {{ lesson.end | date }} </span>
+                            <span ng-show='lesson.teacher'> - {{ lesson.teacher }} <br/> </span>
+                            <span ng-show='lesson.hours'> - Ore Previste: {{ lesson.hours }} <br/> </span>
+                            <span ng-show='lesson.start'> - Inizio Lezioni: {{ lesson.start | date }} <br/> </span>
+                            <span ng-show='lesson.end'> - Fine Lezioni: {{ lesson.end | date }} <br/> </span>
                             
                         </div>
                         
@@ -48,34 +48,37 @@
                             <button class="btn btn-sm btn-danger" ng-click="deleteLesson(parent)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
-                    <td ng-if="day.events.length" class="agenda-time">
-                        {{ day.events[0].from | date : 'shortTime' }} <span ng-show="event.to"> - {{ day.events[0].to | date : 'shortTime' }}</span>
+                    <td ng-if="lesson.arguments.length" class="lessons-time">
+                        Tema lezione: {{ lesson.arguments[0].title }}
                     </td>
-                    <td ng-if="day.events.length" class="agenda-events">
-                        <div class="agenda-event">
-                            {{ day.events[0].teacher }} <span ng-show="day.events[0].lesson">-</span>
-                            {{ day.events[0].lesson }} <span ng-show="day.events[0].argument">-</span>
-                            {{ day.events[0].argument }}
+                    <td ng-if="lesson.arguments.length" class="lessons-arguments">
+                        <div class="lessons-argument">
+                            Ore Dedicate: {{ lesson.arguments[0].hours }} <br/>
+                            <span ng-show="lesson.arguments[0].description"> - {{ lesson.arguments[0].description }}</span>
+                            
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showEvent(parent, 0)"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteEvent(parent, 0)"><i class="fa fa-trash"></i></button>
-                          </div>
+                                <button class="btn btn-sm btn-info"  ng-click="showArgument(parent, 0)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteArgument(parent, 0)"><i class="fa fa-trash"></i></button>
+                            </div>
                         </div>
                     </td>
                 </tr>
-                <tr ng-if="day.events.length > 1" ng-repeat="event in day.events">
-                    <td class="agenda-date" class="active" rowspan="{{ day.events.length }}" ng-if="$index == 0">
-                        <div class="dayofmonth">{{ day.date | date : 'dd' }}</div>
-                        <div class="dayofweek">{{ day.date | date : 'EEEE' }}</div>
-                        <div class="shortdate text-muted">{{ day.date | date : 'MMMM, yyyy' }}</div>
-                        
+                <tr ng-if="lesson.arguments.length > 1" ng-repeat="argument in lesson.arguments">
+                    <td class="lessons-date" class="active" rowspan="{{ lesson.arguments.length }}" ng-if="$index == 0">
+                        <div> {{ lesson.materia }} 
+                            <span ng-show='lesson.teacher'> - {{ lesson.teacher }} <br/> </span>
+                            <span ng-show='lesson.hours'> - Ore Previste: {{ lesson.hours }} <br/> </span>
+                            <span ng-show='lesson.start'> - Inizio Lezioni: {{ lesson.start | date }} <br/> </span>
+                            <span ng-show='lesson.end'> - Fine Lezioni: {{ lesson.end | date }} <br/> </span>
+                            
+                        </div>
                         <div class="text-right">
-                            <button class="btn btn-sm btn-info"  ng-click="showDay(parent)"><i class="fa fa-pencil"></i></button>
-                            <button class="btn btn-sm btn-danger" ng-click="deleteDay(parent)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-sm btn-info"  ng-click="showLesson(parent)"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-click="deleteLesson(parent)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
-                    <td class="agenda-time">
-                        {{ event.from | date : 'shortTime' }} <span ng-show="event.to"> - {{ event.to | date : 'shortTime' }}</span>
+                    <td class="lessons-time">
+                        Tema lezione: {{ lesson.arguments[0].title }}
                     </td>
                     <td class="agenda-events">
                         <div class="agenda-event">

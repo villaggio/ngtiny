@@ -11,7 +11,6 @@
     vm.lesson = {};
     //done
     vm.init = function(){
-        debugger
         vm.resetLessons();
         vm.resetLesson();
         //test
@@ -124,10 +123,10 @@
     // la nuova versione alla sua precedente
     vm.saveLesson = function(index){
         if(index>=0){
-            vm.agenda.splice(index, 1, vm.getDay(vm.day));
+            vm.lessons.splice(index, 1, vm.getLesson(vm.lesson));
         }else{
-            vm.agenda.push(vm.getDay(vm.day));
-            vm.resetDay();
+            vm.lessons.push(vm.getLesson(vm.lesson));
+            vm.resetLesson();
         }
     };
 
