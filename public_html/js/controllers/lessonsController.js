@@ -1,4 +1,4 @@
-app.controller('LessonsController', ['$scope', function($scope) {
+app.controller('AgendaController', ['$scope', function($scope) {
     var vm = $scope;
     //done
     vm.lessons = [];
@@ -117,10 +117,10 @@ app.controller('LessonsController', ['$scope', function($scope) {
     // la nuova versione alla sua precedente
     vm.saveLesson = function(index){
         if(index>=0){
-            vm.lessons.splice(index, 1, vm.getLesson(vm.lesson));
+            vm.agenda.splice(index, 1, vm.getDay(vm.day));
         }else{
-            vm.lessons.push(vm.getLesson(vm.lesson));
-            vm.resetLesson();
+            vm.agenda.push(vm.getDay(vm.day));
+            vm.resetDay();
         }
     };
 
