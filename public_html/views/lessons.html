@@ -132,7 +132,7 @@
                     </h3>
                     <div class="col-md-6 col-sm-12">
                         <ul class="list-group" ng-show="(lesson.arguments.length)">
-                          <li ng-repeat="argument in lesson.arguments" class="list-group-item">
+                            <li ng-repeat="argument in lesson.arguments" class="list-group-item">
                                 {{ argument.title }}
                                 <span ng-show="argument.hours">- {{ argument.hours }}</span>
                                 <span ng-show="argument.description">- {{ argument.description }}</span>
@@ -141,7 +141,7 @@
                                     <button class="btn btn-sm btn-info"  ng-click="showStudent($index)"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)"><i class="fa fa-trash"></i></button>
                             </div -->
-                          </li>
+                             </li>
                         </ul>
                         <div class="text-center">
                             <button ng-show="(lesson.arguments.length)" class="btn btn-sm btn-danger" ng-click="resetArguments(lesson.index)"><i class="fa fa-trash"></i> Cancella tutto</button>
@@ -154,20 +154,20 @@
                             <div class="form-group col-md-6 col-sm-12">
                                  <label>Argomento</label>
                                  <input type="text" class="form-control" ng-model="argument.title" placeholder="Inserire l'argomento">
-                           </div>
+                            </div>
                             <div class="form-group col-md-6 col-sm-12">
                                  <label>Lezione</label>
                                  <input type="number" class="form-control" ng-model="argument.hours" placeholder="Inserire ore dedicate">
-                           </div>
-                           <div class="form-group col-xs-12">
-                                 <label>Descrizione</label>
-                                 <textarea type="textarea" class="form-control" ng-model="argument.description" placeholder="Sunto dei temi trattati"></textarea>
-                           </div>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label>Descrizione</label>
+                                <textarea type="textarea" class="form-control" ng-model="argument.description" placeholder="Sunto dei temi trattati"></textarea>
+                            </div>
                             
-                           <div class="col-sm-12 text-center">
-                               <button ng-click="saveArgument(lesson.index, argument.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Argomento</button>
-                               <button ng-click="resetArgument()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuovo Argomento</button>
-                           </div>
+                            <div class="col-sm-12 text-center">
+                                <button ng-click="saveArgument(lesson.index, argument.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Argomento</button>
+                                <button ng-click="resetArgument()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuovo Argomento</button>
+                            </div>
                         </div> 
                     </div> 
                 </div>

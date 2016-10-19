@@ -11,6 +11,7 @@
     vm.lesson = {};
     //done
     vm.init = function(){
+        
         vm.resetLessons();
         vm.resetLesson();
         //test
@@ -143,12 +144,38 @@
         vm.lessons.splice(index,1);
     };
 
+    //------------------
+    vm.saveArgument = function(index){
+        if(index>=0){
+            vm.lesson.arguments.splice(index, 1, vm.getArgument(vm.argument));
+        }else{
+            vm.lesson.arguments.push(vm.getArgument(vm.argument));
+            vm.resetArgument();
+        }
+    };
+    
+    vm.showArgument = function(index){
+        vm.argument = vm.getArgument(vm.lesson.arguments[index]);
+        vm.argument.index = index;
+    };
+    
+
+    vm.resetArgument = function(){
+        vm.argument = vm.getArgument();
+        vm.argument.index  = -1;
+    };
+    
+    vm.resetArguments = function(){
+        vm.lesson.arguments.length  = 0;
+    };
+
     //done
     vm.deleteArgument = function(parent, index){
         var lesson = vm.lessons[parent];
         lesson.arguments.splice(index,1);
         vm.lessons.splice(parent,1,vm.getLesson(lesson));
     };
+    
 
     vm.init();
 }]);
