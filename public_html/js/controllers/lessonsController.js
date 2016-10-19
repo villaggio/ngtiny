@@ -25,6 +25,7 @@ app.controller('LessonsController', ['$scope', function($scope) {
             hours: integer,
             description: ''
         });
+    }
        
 
     // pulizia lista di day in agenda    
