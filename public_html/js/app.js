@@ -22,3 +22,9 @@ app.conf=function ($routeProvider) {
     }); 
 }
 app.config(app.conf);
+app.constant("swInfo", {
+    "version": "1.0.1"
+});
+app.constant("URL", {
+    "REST": "server"
+});
