@@ -1,4 +1,27 @@
-<h1> VILLAGGIO DEL RAGAZZO</h1>
-<h2> {{ parameters.scuola }} </h2>
-<h2> CENTRO FORMAZIONE PROFESSIONALE</h2>
+<div class="well">
+<h1>{{parameters.logo}}</h1>
+<br>
+<h1> {{ parameters.scuola }} </h1>
+<h5> {{parameters.decreto}}</h5>
+<br>
+<h2>{{parameters.sottotitolo}}</h2>
+<br>
+<h2> {{parameters.centroPagina}}</h2>
+<br><br>
 
+<button ng-click="showHide()">Modifica come admin</button>
+<br>
+<form ng-show="myVar">
+    <input type="text" placeholder="Codice corso n°" ng-model="form.logo"> </input>
+    <br><br>
+    <input type="text" placeholder="Nome corso" ng-model="form.scuola"> </input>
+    <br><br>
+    <input type="text" placeholder="Inizio corso" ng-model="form.decreto"> </input>
+    <br><br>
+    <input type="text" placeholder="Fine corso" ng-model="form.centroPagina"> </input>
+    
+     <button ng-click="saveData()">Salva</button>
+</form>
+<br/>
+<br/>
+</div>

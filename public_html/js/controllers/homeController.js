@@ -1,68 +1,70 @@
 app.controller('HomeController', ['$scope', function($scope) {
    var vm = $scope;
+   
+   vm.parameters = {};
+   vm.form = {};
+    
+    vm.showHide = function() {
+        vm.myVar = !vm.myVar;
+        vm.showData();
+    };
+   
    vm.init = function(){
+        vm.myVar = false;
         vm.parameters = {
            logo: 'img/logo.png',
            scuola: 'Villaggio del Ragazzo',
-           decreto: 'Riconoscimento Giuridico con decreto del Presidente della RepVubblica N. 1364 del first Ottobre 1951',
+           decreto: 'Riconoscimento Giuridico con decreto del Presidente della Repubblica N. 1364 del first Ottobre 1951',
            sottotitolo: 'Centro formazione professionale',
-           centroPagina: 'Registro presenza allievi'
+           centroPagina: 'Registro presenza allievi',
+           codice: '',
+            title: '',
+            start: '',
+            end:  ''
        };
-    },
+    };
+    
+    // apertura in modifica dei dati
+    vm.showData = function(){
+        vm.form = vm.getData(vm.parameters);
+    };
+    
+    // apertura in modifica dei dati
+    vm.saveData = function(){
+        console.log(vm.parameters);
+        vm.setData(vm.parameters, vm.form);
+        console.log(vm.parameters);
+    };
+    
+    // apertura in modifica dei dati
+    vm.getData = function(p){
+        var parameters = {};
+        parameters.logo = p?p.logo:null;
+        parameters.scuola =  p?p.scuola:null;
+        parameters.decreto =  p?p.decreto:null;
+        parameters.sottotitolo =  p?p.sottotitolo:null;
+        parameters.centroPagina =  p?p.centroPagina:null;
+        parameters.codice =  p?p.codice:null;
+        parameters.title =  p?p.title:null;
+        parameters.start =  p?p.start:null;
+        parameters.end =  p?p.end:null;
+        return parameters;
+    };
+    
+    vm.setData = function(target, source){
+        var parameters = target;
+        parameters.logo = source?source.logo:null;
+        parameters.scuola =  source?source.scuola:null;
+        parameters.decreto =  source?source.decreto:null;
+        parameters.sottotitolo =  source?source.sottotitolo:null;
+        parameters.centroPagina =  source?source.centroPagina:null;
+        parameters.codice =  source?source.codice:null;
+        parameters.title =  source?source.title:null;
+        parameters.start =  source?source.start:null;
+        parameters.end =  source?source.end:null;
+    }
+    
     vm.init();
 }
 ]);
-    
-     /*
-    vm.
-    
-    
-    vm.students = [];
-    vm.student = {};
-    
-    vm.init = function(){
-        vm.resetStudent();
-        vm.resetStudents();
-    };
-    
-    vm.resetStudents = function(){
-        vm.students.length = 0;
-    };
-    
-    vm.resetStudent = function(){
-        vm.student.name  = '';
-        vm.student.surname  = '';
-        vm.student.sex = 'Uomo';
-        vm.student.borndate = new Date();
-        vm.student.index = -1;
-    };
-    
-    vm.getStudent = function(s){
-        var student = {};
-        student.name  = s.name;
-        student.surname  = s.surname;
-        student.sex = s.sex;
-        student.borndate = s.borndate;
-        return student;
-    };
-    
-    vm.saveStudent = function(index){
-        if(index>=0){
-            vm.students.splice(index, 1, vm.getStudent(vm.student));
-        }else{
-            vm.students.push(vm.getStudent(vm.student));
-            vm.resetStudent();
-        }
-    };
-    
-    vm.showStudent = function(index){
-        vm.student = vm.getStudent(vm.students[index]);
-        vm.student.index = index;
-    };
-    
-    vm.deleteStudent = function(index){
-        vm.students.splice(index,1);
-    };
-    
-    vm.init();
-}]);*/
+
