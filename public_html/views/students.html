@@ -1,5 +1,5 @@
-<h1>
-    Anagrafica Studenti <small>v. {{app.ver}}</small>
+<h1 class="text-center">
+    Anagrafica Studenti
 </h1>
 
 <div class="col-md-6 col-sm-12">
@@ -24,7 +24,9 @@
 </div>
 </div>
     
-<div class="col-md-6 col-sm-12 well">
+<div class="col-md-6 col-sm-12" ng-class="{'alert-warning' : (student.index >= 0), 'alert-info' : !(student.index >= 0) }">
+    <h3 class="text-center" ng-show="student.index >= 0">Modifica studente</h3>
+    <h3 class="text-center" ng-hide="student.index >= 0">Nuovo studente</h3>
     <form>
          <div class="form-group col-md-6 col-sm-12">
               <label for="exampleName1">Nome</label>

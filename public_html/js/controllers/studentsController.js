@@ -45,6 +45,8 @@ app.controller('StudentsController', ['$scope', function($scope) {
     };
     
     vm.deleteStudent = function(index){
+        if(vm.student.index == index)
+            vm.resetStudent();
         vm.students.splice(index,1);
     };
     
