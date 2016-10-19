@@ -1,4 +1,10 @@
-app.controller('LessonsController', ['$scope', function($scope) {
+//Prima FILA
+// nuova pagina e controller in menu e in routing: lessons.html + LessonsController
+// Come per Agenda mostrare lessons (array) che conterranno oggetti del tipo:
+// {"title":string, "teacher":string, "hours":int, "start":date, "end":date, "arguments":array}
+// ogni "argument" sarà come segue {"title":string, "hours":int , "description":string}
+         
+    app.controller('LessonsController', ['$scope', function($scope) {
     var vm = $scope;
     //done
     vm.lessons = [];
