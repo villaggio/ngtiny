@@ -1,6 +1,5 @@
 var app = angular.module('ngtiny', ['ngRoute']);
-
-app.config(function ($routeProvider) { 
+app.conf=function ($routeProvider) { 
   $routeProvider 
     .when('/', { 
       //controller: 'HomeController', 
@@ -21,4 +20,5 @@ app.config(function ($routeProvider) {
     .otherwise({ 
       redirectTo: '/' 
     }); 
-});
+}
+app.config(app.conf);
