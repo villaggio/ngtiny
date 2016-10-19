@@ -1,3 +1,50 @@
-html,body {font-size:12px;}
+html,body {
+    font-size: 12px;
+    font-family: din;
+    text-align: center; 
+}
 html{overflow-y: scroll;}
 #all{padding-top:70px}
+
+.logo {
+    height: 130px;
+    padding-right: 10px;
+}
+
+.villaggio {
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 44px;
+    margin-bottom: 0px;
+}
+
+.decreto {
+    text-decoration: underline;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.sottotitolo {
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 45px;
+}
+
+.centroPagina {
+    font-family: impact;
+    font-weight: bold;
+    font-size: 65px;
+}
+
+.campiDinamici {
+    font-family: helvetica;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 185px;
+    margin-right: 185px;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-width: 10px;
+    border-color: #FFFFFF;
+}

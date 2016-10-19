@@ -12,15 +12,15 @@ app.controller('HomeController', ['$scope', function($scope) {
    vm.init = function(){
         vm.myVar = false;
         vm.parameters = {
-           logo: 'img/logo.png',
+           logo: "img/logo_villaggio.jpg",
            scuola: 'Villaggio del Ragazzo',
            decreto: 'Riconoscimento Giuridico con decreto del Presidente della Repubblica N. 1364 del first Ottobre 1951',
-           sottotitolo: 'Centro formazione professionale',
+           sottotitolo: 'centro formazione professionale',
            centroPagina: 'Registro presenza allievi',
            codice: '',
-            title: '',
-            start: '',
-            end:  ''
+           title: ' PROGRAMMATORE SVILUPPATORE SOFTWARE',
+           start: '',
+           end:  ''
        };
     };
     
