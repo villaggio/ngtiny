@@ -9,6 +9,10 @@ app.conf=function ($routeProvider) {
       controller: 'StudentsController', 
       templateUrl: 'views/students.html' 
     }) 
+    .when('/lessons', { 
+      controller: 'LessonsController', 
+      templateUrl: 'views/lessons.html' 
+    }) 
     .when('/agenda', { 
       controller: 'AgendaController', 
       templateUrl: 'views/agenda.html' 

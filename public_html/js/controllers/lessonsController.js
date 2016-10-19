@@ -1,10 +1,11 @@
-app.controller('AgendaController', ['$scope', function($scope) {
+app.controller('LessonsController', ['$scope', function($scope) {
     var vm = $scope;
     //done
     vm.lessons = [];
     vm.lesson = {};
     //done
     vm.init = function(){
+        debugger
         vm.resetLessons();
         vm.resetLesson();
         //test
@@ -14,7 +15,7 @@ app.controller('AgendaController', ['$scope', function($scope) {
     //to do
     // metodo di inizializzazione dati per test
     vm.loadFakeLessons = function(){
-        var lesson = vm.getLessons(); //done
+        var lesson = vm.getLesson(); //done
 
         var title = "JavaScript";           // var eventDateFrom = new Date();
         var teacher = "Fazio";              // var eventDateTo = new Date();
@@ -141,7 +142,7 @@ app.controller('AgendaController', ['$scope', function($scope) {
     vm.deleteArgument = function(parent, index){
         var lesson = vm.lessons[parent];
         lesson.arguments.splice(index,1);
-        vm.agenda.splice(parent,1,vm.getLesson(lesson));
+        vm.lessons.splice(parent,1,vm.getLesson(lesson));
     };
 
     vm.init();
