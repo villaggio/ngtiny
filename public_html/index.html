@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="it-IT">     
-  <head>	     
-    <meta charset="UTF-8" />	     
+<html lang="it-IT">
+  <head>
+    <meta charset="UTF-8" />
     <title>
 		NG-Tiny
-    </title>    
-    <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/bootstrap.min.css" />	
+    </title>
+    <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/bootstrap.min.css" />
     <!--link rel="stylesheet" type="text/css" media="all" href="css/font-awesome.min.css" /-->
     <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/agenda.css" />		 	
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />	 	
-  </head>     
+    <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/agenda.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+  </head>
   <body ng-app="ngtiny">
 	<div id="all" class="" ng-controller="AppController as app">
           <app-nav items="app.nav"></app-nav>
           <div ng-view class="container"></div>
           <app-footer ver="app.ver" today="app.today"></app-footer>
-          
+
 	  <script src="lib/jquery/jquery-3.1.0.min.js"></script>
           <script src="lib/bootstrap/bootstrap.min.js"></script>
           <script src="lib/angular/angular.min.js"></script>
           <script src="lib/angular/angular-route.min.js"></script>
           <!-- modulo utilizzato e sue componenti -->
-          
+
 	  <script src="js/app.js"></script>
+          <script src="js/services/lessonsService.js"></script>
           <script src="js/controllers/appController.js"></script>
           <script src="js/controllers/studentsController.js"></script>
           <script src="js/controllers/agendaController.js"></script>
