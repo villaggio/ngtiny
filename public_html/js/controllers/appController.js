@@ -1,4 +1,4 @@
-app.controller('AppController', [function() {
+app.controller('AppController', ['swInfo', function( swInfo ) {
     var vm = this;
     vm.nav = [
        {
@@ -11,14 +11,10 @@ app.controller('AppController', [function() {
         url:"#/agenda",
         title:"Calendario"
        },{
-        url:"#/lessons",
-        title:"Presenze"
-       },{
         url:"#/credits",
         title:"Crediti"
        },
     ];
-    vm.ver = '1.0.0';
+    vm.ver = swInfo.version;
     vm.today = new Date();
-    vm.saluto = 'ciao';
 }]);

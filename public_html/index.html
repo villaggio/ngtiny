@@ -15,7 +15,7 @@
 	<div id="all" class="" ng-controller="AppController as app">
           <app-nav items="app.nav"></app-nav>
           <div ng-view class="container"></div>
-          <app-footer ver="app.ver" today="app.today"></app-footer>
+          <!--app-footer ver="app.ver" today="app.today"></app-footer-->
           
 	  <script src="lib/jquery/jquery-3.1.0.min.js"></script>
           <script src="lib/bootstrap/bootstrap.min.js"></script>
@@ -24,10 +24,11 @@
           <!-- modulo utilizzato e sue componenti -->
           
 	  <script src="js/app.js"></script>
+          <script src="js/services/studentsService.js"></script>
+          <script src="js/services/agendaService.js"></script>
           <script src="js/controllers/appController.js"></script>
           <script src="js/controllers/studentsController.js"></script>
           <script src="js/controllers/agendaController.js"></script>
-          <script src="js/controllers/lessonsController.js"></script>
           <script src="js/directives/appNavDirective.js"></script>
           <script src="js/directives/appFooterDirective.js"></script>
 	</div>

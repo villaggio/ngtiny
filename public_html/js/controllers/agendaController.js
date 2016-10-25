@@ -1,4 +1,4 @@
-app.controller('AgendaController', ['$scope', function($scope) {
+app.controller('AgendaController', ['$scope', 'AgendaService', function($scope, AgendaService) {
     var vm = $scope;
     
     vm.agenda = [];
@@ -8,14 +8,14 @@ app.controller('AgendaController', ['$scope', function($scope) {
         vm.resetAgenda();
         vm.resetDay();
         //test
-        vm.loadFakeData();
-        console.log(vm.agenda);
+     //   vm.loadFakeData();
+     //   console.log(vm.agenda);
     };
     
     // metodo di inizializzazione dati per test
-    vm.loadFakeData = function(){
+    /*vm.loadFakeData = function(){
         var day = vm.getDay();
-        var eventDateFrom = new Date();
+        var eventDateFrom = new Date()
         var eventDateTo = new Date();
         eventDateFrom.setHours(8, 30);
         var eventDateFrom1 = new Date();
@@ -53,11 +53,21 @@ app.controller('AgendaController', ['$scope', function($scope) {
             teacher: 'Fabio Fazio'
         });
         vm.agenda.push(vm.getDay(day));
+    };*/
+    var populateAgenda = function(response){
+        var agenda = response.data.result.agenda;
+        vm.agenda.length = 0;
+        for(var i=0;i<agenda.length;i++){
+           vm.agenda.push(agenda[i]);
+           for(var j=0;j<agenda[i].events.length;j++)
+               vm.day.events.push(agenda[i].events[j]);
+        }        
     };
+    
 
     // pulizia lista di day in agenda    
     vm.resetAgenda = function(){
-        vm.agenda.length = 0;
+        AgendaService.getAgenda(null, populateAgenda);
     };
     
     // pulizia oggetto day
@@ -71,7 +81,7 @@ app.controller('AgendaController', ['$scope', function($scope) {
         vm.event.index  = -1;
     };
 
-    vm.resetEvents = function(){
+   vm.resetEvents = function(){
         vm.day.events.length  = 0;
     };
     

@@ -13,10 +13,6 @@ app.conf=function ($routeProvider) {
       controller: 'AgendaController', 
       templateUrl: 'views/agenda.html' 
     }) 
-    .when('/lessons', { 
-      controller: 'LessonsController', 
-      templateUrl: 'views/lessons.html' 
-    }) 
     .when('/credits', { 
       //controller: 'CreditsController', 
       templateUrl: 'views/credits.html' 
@@ -26,3 +22,9 @@ app.conf=function ($routeProvider) {
     }); 
 }
 app.config(app.conf);
+app.constant("swInfo", {
+    "version": "1.0.1"
+});
+app.constant("URL", {
+    "REST": "server"
+});

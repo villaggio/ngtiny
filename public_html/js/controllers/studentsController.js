@@ -1,4 +1,4 @@
-app.controller('StudentsController', ['$scope', function($scope) {
+app.controller('StudentsController', ['$scope', 'StudentsService', function($scope, StudentsService) {
     var vm = $scope;
     
     vm.students = [];
@@ -9,8 +9,16 @@ app.controller('StudentsController', ['$scope', function($scope) {
         vm.resetStudents();
     };
     
-    vm.resetStudents = function(){
+    var populateStudents = function(response){
+        var students = response.data.result.students;
         vm.students.length = 0;
+        for(var i=0;i<students.length;i++){
+           vm.students.push(students[i]); 
+        }
+    };
+    
+    vm.resetStudents = function(){
+        StudentsService.getStudents(null, populateStudents);
     };
     
     vm.resetStudent = function(){
@@ -37,6 +45,7 @@ app.controller('StudentsController', ['$scope', function($scope) {
             vm.students.push(vm.getStudent(vm.student));
             vm.resetStudent();
         }
+        //console.log(JSON.stringify(vm.students));
     };
     
     vm.showStudent = function(index){
