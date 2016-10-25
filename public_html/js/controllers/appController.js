@@ -11,9 +11,13 @@ app.controller('AppController', ['swInfo', function( swInfo ) {
         url:"#/agenda",
         title:"Calendario"
        },{
+       },{
+        url:"#/lessons",
+        title:"Presenze"
+       },{
         url:"#/credits",
         title:"Crediti"
-       },
+       }
     ];
     vm.ver = swInfo.version;
     vm.today = new Date();

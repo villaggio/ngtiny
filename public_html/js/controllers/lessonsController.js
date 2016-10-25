@@ -1,4 +1,4 @@
-app.controller('LessonsController', ['$scope', function($scope) {
+app.controller('LessonsController', ['$scope', 'LessonsService', function($scope, LessonsService) {
     var vm = $scope;
     vm.studTot=[];
     vm.student={};
@@ -6,42 +6,55 @@ app.controller('LessonsController', ['$scope', function($scope) {
      vm.init = function(){
         vm.resetStudTot();
         vm.resetStudent();
-        vm.loadFakeData();
-        console.log(vm.studTot);
+//        vm.loadFakeData();
+//        console.log(vm.studTot);
     };
-    vm.loadFakeData = function(){
-        var student = vm.getStudent({
-            name: "Super",
-            surname: "Pippo",
-            matr: 12345,
-            presTot: []
-        });
-        vm.studTot.push(vm.getStudent(student));
-        
-        student.presTot.push(vm.getPresence({
-            title: 'frontend development',
-            hours: 4,
-            description:'Angular js'
-        }));
-        vm.studTot.push(vm.getStudent(student));
-        student.presTot.push(vm.getPresence({
-            title: 'backend development',
-            hours: 43,
-            description:'Laravel PHP' 
-        }));
-        vm.studTot.push(vm.getStudent(student));
+//    vm.loadFakeData = function(){
+//        var student = vm.getStudent({
+//            name: "Super",
+//            surname: "Pippo",
+//            matr: 12345,
+//            presTot: []
+//        });
+//        vm.studTot.push(vm.getStudent(student));
+//        
+//        student.presTot.push(vm.getPresence({
+//            title: 'frontend development',
+//            hours: 4,
+//            description:'Angular js'
+//        }));
+//        vm.studTot.push(vm.getStudent(student));
+//        student.presTot.push(vm.getPresence({
+//            title: 'backend development',
+//            hours: 4,
+//            description:'Laravel PHP' 
+//        }));
+//        vm.studTot.push(vm.getStudent(student));
+//    };
+    var populateStudTot = function(response){
+        var students = response.data.result.studTot;
+        vm.studTot.length = 0;
+        for(var i=0;i<students.length;i++){
+           vm.studTot.push(students[i]);
+           for(var j=0;j<students[i].presTot.length;j++)
+                vm.student.presTot.push(students[i].presTot[j]);
+        }
     };
     vm.resetStudTot = function(){
-        vm.studTot.length = 0;
+        LessonsService.getStudTot(null, populateStudTot);
     };
      vm.resetStudent = function(){
+        vm.student = vm.getStudent();
         vm.student.index  = -1;
-        vm.student.matr  = '';
-        if(vm.student.presTot)
-            vm.student.presTot.length = 0;
-        else
-            vm.student.presTot = [];
     };
+    vm.resetPresence = function(){
+       vm.presence = vm.getPresence();
+       vm.presence.index  = -1; 
+    };
+    vm.resetPresTot = function(){
+         vm.student.presTot.length  = 0; 
+    };
+    
     vm.getStudent = function(d){
         var student = {};
         student.name  = d?d.name: '';
@@ -69,22 +82,32 @@ app.controller('LessonsController', ['$scope', function($scope) {
             vm.resetStudent();
         }
     };
+    vm.savePresence = function(index){
+        if(index>=0){
+            vm.student.presTot.splice(index, 1, vm.getPresence(vm.presence));
+        }else{
+            vm.student.presTot.push(vm.getPresence(vm.presence));
+            vm.resetPresence();
+        }
+    };
     
     vm.showStudent = function(index){
         vm.student = vm.getStudent(vm.studTot[index]);
         vm.student.index = index;
     };
+    vm.showPresence = function(index){
+        vm.presence = vm.getPresence(vm.student.presTot[index]);
+        vm.presence.index = index;
+    };
     
     vm.deleteStudent = function(index){
-        if(vm.student.index == index)
-            vm.resetStudent();
+        vm.resetStudent();
         vm.studTot.splice(index,1);
     };
-//    vm.deletePresence(key, index){
-//        var student = vm.studTot[key];
-//        student.presTot.splice(index,1);
-//        vm.studTot.splice(key,1,vm.getStudent(student));        
-//    };
+    vm.deletePresence = function(index){
+        vm.resetPresence();
+        vm.student.presTot.splice(index,1);      
+    };
     
     vm.init();
     

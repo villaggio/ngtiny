@@ -1,0 +1,14 @@
+{
+	"result": {
+		"studTot": [{
+			"name": "Mario",
+			"surname": "Rossi",
+			"matr": "3044131",
+			"presTot": [{
+				"title": "frontend development",
+				"hours": 4,
+				"description": "Angular js"
+			}]
+		}]
+	}
+}

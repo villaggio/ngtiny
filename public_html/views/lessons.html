@@ -15,7 +15,7 @@
             <tbody ng-repeat="(key, student) in studTot">
                 <!-- One event or less-->
                 <tr ng-if="student.presTot.length <= 1">
-                    <td class="agenda-date" class="active">
+                    <td class="agenda-date active">
                         {{student.matr | number}}
                          <div class="text-right">
                             <button class="btn btn-sm btn-info"  ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
@@ -63,6 +63,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-center">
+             <button class="btn btn-sm btn-danger" ng-disabled="StudTot.length < 1" ng-click="resetStudTot()"><i class="fa fa-trash"></i> Cancella tutto</button>
+        </div>
     </div>
         
         
@@ -134,8 +137,8 @@
                                  <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="evenet.to" placeholder="gg/mm/aaaa">
                            </div>
                            <div class="col-sm-12 text-center">
-                               <button ng-click="saveEvent(day.index, event.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Lezione</button>
-                               <button ng-click="resetEvent()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Lezione</button>
+                               <button ng-click="savePresence(student.index, presence.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Lezione</button>
+                               <button ng-click="resetPresence()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Lezione</button>
                            </div>
                         </div> 
                     </div> 
@@ -143,8 +146,8 @@
             </div>
             <hr/>
             <div class="col-sm-12 text-center">
-                <button ng-click="saveDay(day.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Giornata</button>
-                <button ng-click="resetDay()" ng-disabled="day.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Giornata</button>
+                <button ng-click="saveStudent(student.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Giornata</button>
+                <button ng-click="resetStudent()" ng-disabled="day.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Giornata</button>
             </div>
         </form>
     </div>

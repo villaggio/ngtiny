@@ -18,7 +18,7 @@ app.controller('StudentsController', ['$scope', 'StudentsService', function($sco
     };
     
     vm.resetStudents = function(){
-        StudentsService.getStudents(null, populateStudents);
+        StudentsService.getStudTot(null, populateStudents);
     };
     
     vm.resetStudent = function(){
