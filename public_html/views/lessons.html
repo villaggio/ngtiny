@@ -2,7 +2,7 @@
     Presenze Studenti
 </h1>
 
-    <div class="agenda">
+    <div class="agenda" ng-show="studTot.length">
     <div class="table-responsive">
         <table class="table table-condensed table-bordered" ng-show="studTot.length">
             <thead>
@@ -16,7 +16,7 @@
                 <!-- One event or less-->
                 <tr ng-if="student.presTot.length <= 1">
                     <td class="agenda-date active">
-                        {{student.matr | number}}
+                        {{student.matr}}
                          <div class="text-right">
                             <button class="btn btn-sm btn-info"  ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
                             <button class="btn btn-sm btn-danger" ng-click="deleteStudent(key)"><i class="fa fa-trash"></i></button>
@@ -31,7 +31,7 @@
                             {{ student.presTot[0].hours | number }} <span ng-show="student.presTot[0].description">-</span>
                             {{ student.presTot[0].description }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showPresence(key, 0)"><i class="fa fa-pencil-square-o"></i></button>
+                                <!--<button class="btn btn-sm btn-info"  ng-click="showPresence(key, 0)"><i class="fa fa-pencil-square-o"></i></button>-->
                                 <button class="btn btn-sm btn-danger" ng-click="deletePresence(key, 0)"><i class="fa fa-trash-o"></i></button>
                            </div>
                         </div>
@@ -55,7 +55,7 @@
                             {{ presence.hours | number }} <span ng-show="presence.description">-</span>
                             {{ presence.description }}
                             <div class="text-right">
-                                <button class="btn btn-sm btn-info"  ng-click="showPresence(key, $index)"><i class="fa fa-pencil-square-o"></i></button>
+                                <!--<button class="btn btn-sm btn-info"  ng-click="showPresence(key, $index)"><i class="fa fa-pencil-square-o"></i></button>-->
                                 <button class="btn btn-sm btn-danger" ng-click="deletePresence(key, $index)"><i class="fa fa-trash-o"></i></button>
                           </div>
                         </div>
@@ -64,7 +64,7 @@
             </tbody>
         </table>
         <div class="text-center">
-             <button class="btn btn-sm btn-danger" ng-disabled="StudTot.length < 1" ng-click="resetStudTot()"><i class="fa fa-trash"></i> Cancella tutto</button>
+             <button class="btn btn-sm btn-danger" ng-disabled="StudTot.length < 1" ng-click="resetStudTot()"><i class="fa fa-trash"></i>Annulla tutte le modifiche</button>
         </div>
     </div>
         
@@ -101,8 +101,8 @@
                             {{ presence.hours | number}} <span ng-show="presence.description">-</span>
                             {{ presence.description }}
                               <div class="text-right">
-                                    <button class="btn btn-sm btn-info"  ng-click="showStudent($index)"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-info"  ng-click="showPresence($index)"><i class="fa fa-pencil"></i></button>
+                                   <!-- <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)"><i class="fa fa-trash"></i></button>-->
                               </div>
                           </li>
                         </ul>
@@ -113,31 +113,24 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div>
-                            <h3 class="text-center" ng-show="presence.index >= 0">Modifica studente</h3>
-                            <h3 class="text-center" ng-hide="presence.index >= 0">Nuovo studente</h3>
+                            <h3 class="text-center" ng-show="presence.index >= 0">Modifica presenza</h3>
+                            <h3 class="text-center" ng-hide="presence.index >= 0">Nuova presenza</h3>
                             <div class="form-group col-md-6 col-sm-12">
                                  <label>Titolo</label>
                                  <input type="text" class="form-control" ng-model="presence.title" placeholder="Inserire titolo">
                            </div>
                             <div class="form-group col-md-6 col-sm-12">
                                  <label>Ore di lezione</label>
-                                 <input type="text" class="form-control" ng-model="presence.hours" placeholder="Inserire numero di ore">
+                                 <input type="number" min="1" max="8" class="form-control" ng-model="presence.hours" placeholder="Inserire numero di ore">
                            </div>
                            <div class="form-group col-xs-12">
                                  <label>Descrizione</label>
                                  <textarea type="textarea" class="form-control" ng-model="presence.description" placeholder="Inserire la descrizione"></textarea>
                            </div>
 
-                          <div class="form-group col-sm-6 col-xs-12">
-                                 <label>Dalle</label>
-                                 <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="evenet.from" placeholder="gg/mm/aaaa">
-                           </div>
-                           <div class="form-group col-sm-6 col-xs-12">
-                                 <label>Alle</label>
-                                 <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="evenet.to" placeholder="gg/mm/aaaa">
-                           </div>
+                          
                            <div class="col-sm-12 text-center">
-                               <button ng-click="savePresence(student.index, presence.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Lezione</button>
+                               <button ng-click="savePresence(presence.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Lezione</button>
                                <button ng-click="resetPresence()" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Lezione</button>
                            </div>
                         </div> 

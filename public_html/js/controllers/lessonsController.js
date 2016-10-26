@@ -77,6 +77,7 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
     vm.saveStudent = function(index){
         if(index>=0){
             vm.studTot.splice(index, 1, vm.getStudent(vm.student));
+            vm.resetStudent();
         }else{
             vm.studTot.push(vm.getStudent(vm.student));
             vm.resetStudent();
@@ -85,6 +86,7 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
     vm.savePresence = function(index){
         if(index>=0){
             vm.student.presTot.splice(index, 1, vm.getPresence(vm.presence));
+            vm.resetPresence();
         }else{
             vm.student.presTot.push(vm.getPresence(vm.presence));
             vm.resetPresence();
@@ -104,10 +106,11 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
         vm.resetStudent();
         vm.studTot.splice(index,1);
     };
-    vm.deletePresence = function(index){
+    vm.deletePresence = function(key, index){
         vm.resetPresence();
-        vm.student.presTot.splice(index,1);      
+        vm.studTot[key].presTot.splice(index,1);      
     };
+    
     
     vm.init();
     
