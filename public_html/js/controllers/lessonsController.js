@@ -16,7 +16,6 @@
     };
     
     var populateLessons = function(response){
-        debugger
         var lessons = response.data.result.lessons;
         vm.lessons.length = 0;
         for(var i=0;i<lessons.length;i++){
@@ -26,11 +25,6 @@
         
     vm.resetLessons = function(){
         LessonsService.getLessons({}, populateLessons);
-    };
-
-    // pulizia lista di lesson in lessons
-    vm.clearLessons = function(){
-        vm.lessons.length = 0;
     };
 
     //done
@@ -89,6 +83,7 @@
 
     //done
     vm.showLesson = function(index){
+      
         vm.lesson = vm.getLesson(vm.lessons[index]);
         vm.lesson.index = index;
     };
@@ -119,6 +114,7 @@
     vm.resetArgument = function(){
         vm.argument = vm.getArgument();
         vm.argument.index  = -1;
+        
     };
     
     vm.resetArguments = function(){
