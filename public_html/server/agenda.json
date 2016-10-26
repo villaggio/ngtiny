@@ -1,0 +1,32 @@
+{
+    "result": {
+        "agenda": [{
+                "date": "2016-10-19T15:07:48.407Z",
+                "events": []
+            }, {
+                "date": "2016-10-19T15:07:48.407Z",
+                "events": [{
+                        "from": "8.30",
+                        "to": "12.30",
+                        "teacher": "Fazio",
+                        "lesson": "FrontEnd",
+                        "argument": "AngularJs"
+                    }]
+                }, {
+                "date": "2016-10-19T15:07:48.407Z",
+                "events": [{
+                        "from": "8.30",
+                        "to": "12.30",
+                        "teacher": "Fazio",
+                        "lesson": "FrontEnd",
+                        "argument": "AngularJs"
+                }, {
+                        "from": "13.30",
+                        "to": "17.30",
+                        "teacher": "Fazio",
+                        "lesson": "FrontEnd",
+                        "argument": "AngularJs"
+                    }]
+        }]
+    }
+}

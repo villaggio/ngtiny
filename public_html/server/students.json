@@ -1,0 +1,15 @@
+{
+    "result": {
+        "students": [{
+                "matr": "",
+                "surname": "Rossi",
+                "sex": "Uomo",
+                "borndate": "2016-10-19T15:07:48.407Z"
+            }, {
+                "name": "Alessandro",
+                "surname": "Magno",
+                "sex": "Uomo",
+                "borndate": "2016-10-19T15:08:06.096Z"
+            }]
+    }
+}
