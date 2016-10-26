@@ -2,7 +2,7 @@ var app = angular.module('ngtiny', ['ngRoute']);
 app.conf=function ($routeProvider) { 
   $routeProvider 
     .when('/', { 
-      //controller: 'HomeController', 
+      controller: 'HomeController', 
       templateUrl: 'views/home.html' 
     })
     .when('/students', { 

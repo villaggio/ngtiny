@@ -13,7 +13,7 @@ app.controller('AppController', ['swInfo', function( swInfo ) {
        },{
         url:"#/credits",
         title:"Crediti"
-       },
+       }
     ];
     vm.ver = swInfo.version;
     vm.today = new Date();
