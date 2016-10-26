@@ -5,7 +5,7 @@ app.directive('appNav', function() {
   }; 
 });
 
-app.controller('appNavController', [ '$scope', 'SessionService', function($scope, SessionService) { 
+app.controller('appNavController', [ '$scope', '$location', 'SessionService', function($scope, $location, SessionService) { 
   var vm = this;
   vm.pages = [];
   vm.session = null;
@@ -26,6 +26,7 @@ app.controller('appNavController', [ '$scope', 'SessionService', function($scope
   
   vm.signout = function(){
         SessionService.signout(vm.loadSession);
+        $location.path( '/' );
   }
   
   vm.signin = function(valid){
