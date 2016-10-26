@@ -1,0 +1,22 @@
+{
+	"result": {
+		"session": {
+			"name": "Alessandro",
+                        "role": "admin",
+			"token": "38vmoe95kdp",
+			"pages": [{
+				"url": "#/",
+				"title": "Home"
+			}, {
+				"url": "#/students",
+				"title": "Anagrafica"
+			}, {
+				"url": "#/agenda",
+				"title": "Calendario"
+			}, {
+				"url": "#/credits",
+				"title": "Crediti"
+			}]
+		}
+	}
+}
