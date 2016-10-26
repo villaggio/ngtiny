@@ -22,7 +22,9 @@ app.conf=function ($routeProvider) {
     }); 
 }
 app.config(app.conf);
-app.constant("globalInfo",{
-    version: "1.0.0",
-    api: "/api"
+app.constant("swInfo", {
+    "version": "1.0.1"
+});
+app.constant("URL", {
+    "REST": "server"
 });

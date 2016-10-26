@@ -1,4 +1,4 @@
-app.controller('AppController', ['globalInfo', function(globalInfo) {
+app.controller('AppController', ['swInfo', function( swInfo ) {
     var vm = this;
     vm.nav = [
        {
@@ -15,6 +15,6 @@ app.controller('AppController', ['globalInfo', function(globalInfo) {
         title:"Crediti"
        }
     ];
-    vm.ver = globalInfo.version;
+    vm.ver = swInfo.version;
     vm.today = new Date();
 }]);
