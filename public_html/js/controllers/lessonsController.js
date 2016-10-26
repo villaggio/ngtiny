@@ -4,76 +4,32 @@
 // {"title":string, "teacher":string, "hours":int, "start":date, "end":date, "arguments":array}
 // ogni "argument" sarà come segue {"title":string, "hours":int , "description":string}
          
-    app.controller('LessonsController', ['$scope', function($scope) {
+    app.controller('LessonsController', ['$scope', 'LessonsService', function($scope, LessonsService) {
     var vm = $scope;
     //done
     vm.lessons = [];
     vm.lesson = {};
     //done
     vm.init = function(){
-        
         vm.resetLessons();
         vm.resetLesson();
-        //test
-        vm.loadFakeLessons();
-        console.log(vm.lessons);
     };
-    //to do
-    // metodo di inizializzazione dati per test
-    vm.loadFakeLessons = function(){
-        var lesson = vm.getLesson(); //done
-
-        var title = "JavaScript";           // var eventDateFrom = new Date();
-        var teacher = "Fazio";              // var eventDateTo = new Date();
-        var hours = parseInt(130);          // eventDateFrom.setHours(8, 30);
-        var start = new Date();
-        var end = new Date();
-
-        var title1 = "HTML/CSS";            // var eventDateFrom1 = new Date();
-        var teacher1 = "Sanguineti";        // var eventDateTo1 = new Date();
-        var hours1 = parseInt(50);          // eventDateFrom1.setHours(8, 30);
-        var start1 = new Date();            // eventDateTo1.setHours(12, 30);
-        var end1 = new Date();
-
-        var title2 = "HTML/CSS";            // var eventDateFrom2 = new Date();
-        var teacher2 = "Sanguineti";        // var eventDateTo2 = new Date();
-        var hours2 = parseInt(50);          // eventDateFrom2.setHours(13, 30);
-        var start2 = new Date();            // eventDateTo2.setHours(17, 30);
-        var end2 = new Date();
-
-        vm.lessons.push(vm.getLesson(lesson)); //done
-
-        lesson.arguments.push({ //done
-        title: "cicli for, do_while, while",   // from: eventDateFrom,
-        hours: 4,                              // to: eventDateTo,
-        description: "spiegazione e esercizio" // lesson: 'Frontend Dev 0',
-                                               // argument: 'AngularJS',
-                                               // teacher: 'Fabio Fazio'
-        });
-        vm.lessons.push(vm.getLesson(lesson)); //done
-        lesson.arguments.splice(0,1); //done
-        lesson.arguments.push({ //done
-        title: "modifica del DOM da script",   // from: eventDateFrom1,
-        hours: 8,                              // to: eventDateTo1,
-        description: "esercizi in classe"      // from: eventDateFrom1,
-                                               // to: eventDateTo1,
-                                               // lesson: 'Frontend Dev 1',
-                                               // argument: 'AngularJS',
-                                               // teacher: 'Fabio Fazio'
-        });
-        lesson.arguments.push({ //done
-        title: "cicli for, do_while, while",   // from: eventDateFrom2,
-        hours: 4,                              // to: eventDateTo2,
-        description: "spiegazione e esercizio" // lesson: 'Frontend Dev 2',
-                                               // argument: 'AngularJS',
-                                               // teacher: 'Fabio Fazio'
-        });
-        vm.lessons.push(vm.getLesson(lesson)); //done
+    
+    var populateLessons = function(response){
+        debugger
+        var lessons = response.data.result.lessons;
+        vm.lessons.length = 0;
+        for(var i=0;i<lessons.length;i++){
+           vm.lessons.push(lessons[i]); 
+        }
     };
-
-    //done
-    // pulizia lista di lesson in lessons
+        
     vm.resetLessons = function(){
+        LessonsService.getLessons({}, populateLessons);
+    };
+
+    // pulizia lista di lesson in lessons
+    vm.clearLessons = function(){
         vm.lessons.length = 0;
     };
 

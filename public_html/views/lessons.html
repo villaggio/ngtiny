@@ -18,18 +18,31 @@
         </p>
     </div -->
 
- <div class="lessons col-sm-12" ng-show="lessons.length">
-    <div class="well well-sm table table-responsive">
-        <table class="table table-condensed table-bordered">
-            <thead>
-                <tr> <!-- Argomenti dell' oggetto lesson, appartenente all' array lessons-->
-                    <th>Materia</th>
-                    <th>Argomenti trattati</th>
-                    <th>Descrizione</th>
-                </tr>
-            </thead>
+    <!-- mostra la tabella solo se l' array lessons, contenente varie lesson, non è vuoto -->
+    <div class="lessons col-sm-12" ng-show="lessons.length"> 
+        <div class="well well-sm table table-responsive">
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <!-- Argomenti dell' oggetto lesson, appartenente all' array lessons-->
+                    <tr>
+                        
+                        <!-- (TEMA, INSEGNANTE, ORE TOTALI MATERIA, INIZIO E FINE MATERIA)
+                        Contiene tutte le informazioni riguardanti la materia del corso:
+                        Tema,Insegnante,Ore totali prestabilite,Inizio,Fine-->
+                        <th>Materia</th>
+                        
+                        <!-- (ARGOMENTO LEZIONE) Contiene l' argomento della lezione del giorno -->
+                        <th>Argomenti trattati</th>
+                        
+                        <!-- (ORE LEZIONE, RIASSUNTO LEZIONE)Contiene il numero di ore dedicate nella lezione ed una 
+                        breve descrizione riassuntiva -->
+                        <th>Descrizione</th>
+                    </tr>
+                </thead>
+            
+            <!--  -->
             <tbody ng-repeat="(parent, lesson) in lessons">
-                <!-- Single event in a single day -->
+                <!-- Single argument in a single lesson -->
                 <tr ng-if="lesson.arguments.length <= 1">
                     <td class="lessons-date" class="active" colspan="{{ lesson.arguments.length?1:3  }}">
                         <div> {{ lesson.title }} 
@@ -65,7 +78,7 @@
                 </tr>
                 <tr ng-if="lesson.arguments.length > 1" ng-repeat="argument in lesson.arguments">
                     <td class="lessons-date" class="active" rowspan="{{ lesson.arguments.length }}" ng-if="$index == 0">
-                        <div> {{ lesson.materia }} 
+                        <div> {{ lesson.title }} 
                             <span ng-show='lesson.teacher'> - {{ lesson.teacher }} <br/> </span>
                             <span ng-show='lesson.hours'> - Ore Previste: {{ lesson.hours }} <br/> </span>
                             <span ng-show='lesson.start'> - Inizio Lezioni: {{ lesson.start | date }} <br/> </span>
@@ -78,12 +91,12 @@
                         </div>
                     </td>
                     <td class="lessons-time">
-                        Tema lezione: {{ lesson.arguments.title }}
+                        Tema lezione: {{ argument.title }}
                     </td>
                     <td class="lessons-arguments">
                         <div class="lessons-argument">
-                            Ore Dedicate: {{ lesson.arguments.hours }} <br/>
-                            <span ng-show="lesson.arguments.description"> - {{ lesson.arguments.description }}</span>
+                            Ore Dedicate: {{ argument.hours }} <br/>
+                            <span ng-show="argument.description"> - {{ argument.description }}</span>
                             
                             <div class="text-right">
                                 <button class="btn btn-sm btn-info"  ng-click="showArgument(parent, $index)"><i class="fa fa-pencil"></i></button>
