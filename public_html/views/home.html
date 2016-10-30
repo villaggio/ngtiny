@@ -1,3 +1,48 @@
-<h1>
-    HOME
-</h1>
+<div class="well">
+    <table align="center">
+        <tr>
+            <td>
+                <img ng-src="{{parameters.logo}}" class="logo"/>
+            </td>
+            <td valign="bottom">
+                <h1 align="left" class="villaggio"> {{ parameters.scuola | uppercase}} </h1> 
+                <h5 class="decreto"> {{parameters.decreto}}</h5>
+            </td>
+        </tr> 
+    </table>
+<br>
+    <div class="sottotitolo">
+        <h2>{{parameters.sottotitolo | uppercase}}</h2>
+    </div>
+<br>
+    <h2 class="centroPagina"> {{parameters.centroPagina | uppercase}}</h2>
+
+<!-- da qui iniziano quelli dinamici -->
+<div class="campiDinamici">
+    <h3> corso cod. N.:{{parameters.codice }} </h3>
+    <br>
+    <h3> Titolo:{{parameters.title}}</h3>
+    <br>
+    <h3>Periodo dal:{{parameters.start}}al:{{parameters.end}} </h3>
+</div>
+
+
+<br><br>
+
+<button ng-if="isAdmin()" ng-click="showHide()">Modifica come admin</button>
+<br>
+<form ng-show="myVar">
+    <input type="text" placeholder="Codice corso n°" ng-model="form.codice"> </input>
+    <br><br>
+    <input type="text" placeholder="Nome corso" ng-model="form.title"> </input>
+    <br><br>
+    <input type="text" placeholder="Inizio corso" ng-model="form.start"> </input>
+    <br><br>
+    <input type="text" placeholder="Fine corso" ng-model="form.end"> </input>
+    
+     <button ng-click="saveData()">Salva</button>
+</form>
+<br/>
+<br/>
+</div>
+</div>
