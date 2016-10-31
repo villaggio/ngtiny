@@ -16,6 +16,10 @@
 			}, {
 				"url": "#/credits",
 				"title": "Crediti"
+		
+			}, {
+				"url": "#/lessons",
+				"title": "Presenze"
 			}]
 		}
 	}

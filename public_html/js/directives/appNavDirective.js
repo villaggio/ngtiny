@@ -18,23 +18,23 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', fu
             vm.pages.push(vm.session.pages[i]);
         }
     } 
-  }
+  };
   
   vm.init = function(){
       vm.loadSession();
-  }
+  };
   
   vm.signout = function(){
         SessionService.signout(vm.loadSession);
         $location.path( '/' );
-  }
+  };
   
   vm.signin = function(valid){
     if(valid){
         SessionService.signin({data: vm.user}, vm.loadSession);
     }else
         alert("Autenticazione errata");
-  }
+  };
   
   vm.init();
 }]);

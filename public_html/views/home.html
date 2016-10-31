@@ -23,26 +23,25 @@
     <br>
     <h3> Titolo:{{parameters.title}}</h3>
     <br>
-    <h3>Periodo dal:{{parameters.start}}al:{{parameters.end}} </h3>
+    <h3>Periodo dal: {{parameters.start|date:"dd/MM/yyyy"}} al: {{parameters.end|date:"dd/MM/yyyy"}} </h3>
 </div>
 
 
 <br><br>
 
 <button ng-if="isAdmin()" ng-click="showHide()">Modifica come admin</button>
-<br>
-<form ng-show="myVar">
-    <input type="text" placeholder="Codice corso n°" ng-model="form.codice"> </input>
-    <br><br>
-    <input type="text" placeholder="Nome corso" ng-model="form.title"> </input>
-    <br><br>
-    <input type="text" placeholder="Inizio corso" ng-model="form.start"> </input>
-    <br><br>
-    <input type="text" placeholder="Fine corso" ng-model="form.end"> </input>
-    
-     <button ng-click="saveData()">Salva</button>
+<br/><br/>
+<form ng-if="isAdmin()" ng-show="myVar">
+    <input type="text" placeholder="Codice corso n°" ng-model="form.codice"/> 
+    <br/><br/>
+    <input type="text" size="50" placeholder="Nome corso" ng-model="form.title"/>
+    <br/><br/>
+    <input type="date" placeholder="Inizio corso" ng-model="form.start"/> 
+    <br/><br/>
+    <input type="date" placeholder="Fine corso" ng-model="form.end"/> 
+    <br/><br/>
+    <button ng-click="saveData()">Salva</button>
 </form>
 <br/>
 <br/>
-</div>
 </div>

@@ -12,8 +12,9 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
     vm.isAdmin = function(){
         return SessionService.isAdmin();
     }
-   
-   vm.init = function(){
+    
+    vm.init = function(){
+            
         vm.myVar = false;
         vm.parameters = {
            logo: "img/logo_villaggio.jpg",
@@ -22,8 +23,8 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
            sottotitolo: 'centro formazione professionale',
            centroPagina: 'Registro presenza allievi',
            codice: '',
-           title: ' PROGRAMMATORE SVILUPPATORE SOFTWARE',
-           start: '',
+           title: 'PROGRAMMATORE SVILUPPATORE SOFTWARE',
+           start: '' ,
            end:  ''
        };
     };
