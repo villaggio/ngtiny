@@ -1,8 +1,12 @@
-app.controller('StudentsController', ['$scope', 'StudentsService', function($scope, StudentsService) {
+app.controller('StudentsController', ['$scope', 'StudentsService', 'SessionService', function($scope, StudentsService, SessionService) {
     var vm = $scope;
     
     vm.students = [];
     vm.student = {};
+    
+    vm.isAdmin = function(){
+        return SessionService.isAdmin();
+    };
     
     vm.init = function(){
         vm.resetStudent();
@@ -16,7 +20,7 @@ app.controller('StudentsController', ['$scope', 'StudentsService', function($sco
            vm.students.push(students[i]); 
         }
     };
-    
+        
     vm.resetStudents = function(){
         StudentsService.getStudents(null, populateStudents);
     };

@@ -14,12 +14,11 @@
 				"url": "#/agenda",
 				"title": "Calendario"
 			}, {
-				"url": "#/credits",
-				"title": "Crediti"
-		
-			}, {
 				"url": "#/lessons",
 				"title": "Presenze"
+			}, {
+				"url": "#/credits",
+				"title": "Crediti"
 			}]
 		}
 	}

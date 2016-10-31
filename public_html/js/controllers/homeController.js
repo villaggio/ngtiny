@@ -11,7 +11,7 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
    
     vm.isAdmin = function(){
         return SessionService.isAdmin();
-    }
+    };
     
     vm.init = function(){
             
@@ -67,7 +67,7 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
         parameters.title =  source?source.title:null;
         parameters.start =  source?source.start:null;
         parameters.end =  source?source.end:null;
-    }
+    };
     
     vm.init();
 }

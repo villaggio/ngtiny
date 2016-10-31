@@ -14,13 +14,13 @@
         - nato/a il {{ stud.borndate | date : 'dd/MM/yyyy' }} - {{ stud.sex }}
       </span>
       <div class="text-right">
-            <button class="btn btn-sm btn-info"  ng-click="showStudent($index)">Modifica</button>
-            <button class="btn btn-sm btn-danger" ng-click="deleteStudent($index)">Cancella</button>
+            <button class="btn btn-sm btn-info" ng-if="isAdmin()"  ng-click="showStudent($index)">Modifica</button>
+            <button class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteStudent($index)">Cancella</button>
       </div>
     </div>
   </li>
 </ul>
-<button class="btn btn-sm btn-danger" ng-click="resetStudents()">Cancella tutto</button>
+<button class="btn btn-sm btn-danger" ng-click="resetStudents()">Annulla Modifiche</button>
 </div>
 </div>
     
@@ -60,7 +60,7 @@
         </div>
         <div class="col-sm-12 text-center">
         <button ng-click="saveStudent(student.index)" class="btn btn-info">Salva</button>
-        <button ng-click="resetStudent()" class="btn btn-primary">Nuovo</button>
+        <button ng-if="isAdmin()" ng-click="resetStudent()" class="btn btn-primary">Nuovo</button>
         </div>
     </form>
 </div>

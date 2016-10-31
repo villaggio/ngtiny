@@ -1,13 +1,15 @@
-app.controller('LessonsController', ['$scope', 'LessonsService', function($scope, LessonsService) {
+app.controller('LessonsController', ['$scope', 'LessonsService', 'SessionService', function($scope, LessonsService, SessionService) {
     var vm = $scope;
     vm.studTot=[];
     vm.student={};
     
-     vm.init = function(){
+    vm.isAdmin = function(){
+        return SessionService.isAdmin();
+    };
+    
+    vm.init = function(){
         vm.resetStudTot();
         vm.resetStudent();
-//        vm.loadFakeData();
-//        console.log(vm.studTot);
     };
 //    vm.loadFakeData = function(){
 //        var student = vm.getStudent({
@@ -43,7 +45,7 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
     vm.resetStudTot = function(){
         LessonsService.getStudTot(null, populateStudTot);
     };
-     vm.resetStudent = function(){
+    vm.resetStudent = function(){
         vm.student = vm.getStudent();
         vm.student.index  = -1;
     };
@@ -54,7 +56,6 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
     vm.resetPresTot = function(){
          vm.student.presTot.length  = 0; 
     };
-    
     vm.getStudent = function(d){
         var student = {};
         student.name  = d?d.name: '';
@@ -73,7 +74,6 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
         presence.description= e?e.description:null;
         return presence;        
     };
-    
     vm.saveStudent = function(index){
         if(index>=0){
             vm.studTot.splice(index, 1, vm.getStudent(vm.student));
@@ -92,7 +92,6 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
             vm.resetPresence();
         }
     };
-    
     vm.showStudent = function(index){
         vm.student = vm.getStudent(vm.studTot[index]);
         vm.student.index = index;
@@ -101,7 +100,6 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
         vm.presence = vm.getPresence(vm.student.presTot[index]);
         vm.presence.index = index;
     };
-    
     vm.deleteStudent = function(index){
         vm.resetStudent();
         vm.studTot.splice(index,1);
@@ -109,9 +107,7 @@ app.controller('LessonsController', ['$scope', 'LessonsService', function($scope
     vm.deletePresence = function(key, index){
         vm.resetPresence();
         vm.studTot[key].presTot.splice(index,1);      
-    };
-    
-    
+    }; 
     vm.init();
     
 }]);

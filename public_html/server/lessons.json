@@ -9,6 +9,19 @@
 				"hours": 4,
 				"description": "Angular js"
 			}]
+		}, {
+			"name": "Piero",
+			"surname": "Verdi",
+			"matr": "3088767",
+			"presTot": [{
+				"title": "frontend development",
+				"hours": 4,
+				"description": "Angular js"
+			}, {
+				"title": "frontend development",
+				"hours": 4,
+				"description": "Angular js"
+			}]
 		}]
 	}
 }

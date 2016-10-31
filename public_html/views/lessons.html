@@ -18,8 +18,8 @@
                     <td class="agenda-date active">
                         {{student.matr}}
                          <div class="text-right">
-                            <button class="btn btn-sm btn-info"  ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
-                            <button class="btn btn-sm btn-danger" ng-click="deleteStudent(key)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-sm btn-info" ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteStudent(key)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
                     <td class="agenda-events" colspan="{{ student.presTot.length?1:2  }}">
@@ -28,11 +28,11 @@
                     <td ng-if="student.presTot.length" class="agenda-events">
                         <div class="agenda-event">
                             {{ student.presTot[0].title }} <span ng-show="student.presTot[0].hours">-</span>
-                            {{ student.presTot[0].hours | number }} <span ng-show="student.presTot[0].description">-</span>
+                            {{ student.presTot[0].hours | number }}<span ng-show="student.presTot[0].hours">ore</span><span ng-show="student.presTot[0].description">-</span>
                             {{ student.presTot[0].description }}
                             <div class="text-right">
                                 <!--<button class="btn btn-sm btn-info"  ng-click="showPresence(key, 0)"><i class="fa fa-pencil-square-o"></i></button>-->
-                                <button class="btn btn-sm btn-danger" ng-click="deletePresence(key, 0)"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deletePresence(key, 0)"><i class="fa fa-trash-o"></i></button>
                            </div>
                         </div>
                     </td>
@@ -40,23 +40,23 @@
                  <!-- More than one event -->
                 <tr ng-if="student.presTot.length  > 1" ng-repeat="presence in student.presTot">
                     <td class="agenda-date active" rowspan="{{ student.presTot.length }}" ng-if="$index == 0">
-                       {{student.matr | number}}
+                       {{student.matr}}
                         <div class="text-right">
-                            <button class="btn btn-sm btn-info"  ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
-                            <button class="btn btn-sm btn-danger" ng-click="deleteStudent(key)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-sm btn-info" ng-click="showStudent(key)"><i class="fa fa-pencil-square"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteStudent(key)"><i class="fa fa-trash"></i></button>
                         </div>
                     </td>
-                    <td class="agenda-time">
+                    <td class="agenda-time" rowspan="{{ student.presTot.length }}" ng-if="$index == 0">
                         {{student.surname}} {{student.name}}
                     </td>
                     <td class="agenda-events">
                         <div class="agenda-event">
-                           {{ presence.title }} <span ng-show="presence.hours">-</span>
-                            {{ presence.hours | number }} <span ng-show="presence.description">-</span>
+                            {{ presence.title }} <span ng-show="presence.hours">-</span>
+                            {{ presence.hours | number }}<span ng-show="presence.hours">ore</span> <span ng-show="presence.description">-</span>
                             {{ presence.description }}
                             <div class="text-right">
                                 <!--<button class="btn btn-sm btn-info"  ng-click="showPresence(key, $index)"><i class="fa fa-pencil-square-o"></i></button>-->
-                                <button class="btn btn-sm btn-danger" ng-click="deletePresence(key, $index)"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deletePresence(key, $index)"><i class="fa fa-trash-o"></i></button>
                           </div>
                         </div>
                     </td>
@@ -98,7 +98,7 @@
                         <ul class="list-group" ng-show="(student.presTot.length)">
                           <li ng-repeat="presence in student.presTot" class="list-group-item">
                             {{ presence.title }} <span ng-show="presence.hours">-</span>
-                            {{ presence.hours | number}} <span ng-show="presence.description">-</span>
+                            {{ presence.hours | number }}<span ng-show="presence.hours">ore</span><span ng-show="presence.description">-</span>
                             {{ presence.description }}
                               <div class="text-right">
                                     <button class="btn btn-sm btn-info"  ng-click="showPresence($index)"><i class="fa fa-pencil"></i></button>
@@ -107,7 +107,7 @@
                           </li>
                         </ul>
                         <div class="text-center">
-                            <button ng-show="(student.presTot.length)" class="btn btn-sm btn-danger" ng-click="resetPresTot(student.index)">
+                            <button ng-if="isAdmin()" ng-show="(student.presTot.length)" class="btn btn-sm btn-danger" ng-click="resetPresTot(student.index)">
                                 <i class="fa fa-trash"></i> Cancella tutto</button>
                         </div>
                     </div>
@@ -139,8 +139,8 @@
             </div>
             <hr/>
             <div class="col-sm-12 text-center">
-                <button ng-click="saveStudent(student.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Giornata</button>
-                <button ng-click="resetStudent()" ng-disabled="day.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuova Giornata</button>
+                <button ng-click="saveStudent(student.index)" class="btn btn-sm btn-info"><i class="fa fa-save"></i> Salva Studente</button>
+                <button ng-click="resetStudent()" ng-disabled="day.index == -1" class="btn btn-sm btn-primary"><i class="fa fa-star"></i> Nuovo Studente</button>
             </div>
         </form>
     </div>
