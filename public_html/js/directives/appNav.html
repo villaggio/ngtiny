@@ -14,7 +14,7 @@
             </div>
             <form ng-hide="nav.session" novalidate class="navbar-form" name="signin" ng-submit="nav.signin(signin.$valid)">
                 <div class="input-group" ng-class="{ 'has-error' : signin.email.$invalid && !signin.email.$pristine }" >
-                    <span class="input-group-addon" tooltip data-placement="bottom" title="Email obblibatoria"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon" tooltip data-placement="bottom" title="Email obbligatoria"><i class="fa fa-user"></i></span>
                     <input size="10" name="email" required type="email" class="form-control input-sm" ng-model="nav.user.mail" placeholder="Email">
                 </div>
 

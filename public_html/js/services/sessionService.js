@@ -1,4 +1,4 @@
-app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http, URL, $sessionStorage ){
+app.service('SessionService', [ '$http', 'URL', '$sessionStorage', function( $http, URL, $sessionStorage ){
     
     var onError = function(response)
         {console.log("Errore di chiamata: ", response);};
@@ -13,7 +13,10 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
     var signin = function(request, afterReady){
         var data = request? request.data : {};
         afterReady = afterReady?afterReady:function(){};
-        var onReady = function(responce){onSuccess(responce); afterReady();};
+        var onReady = function(response){
+            onSuccess(response); 
+            afterReady();
+        };
         $http({
             url : URL.REST + '/signin.json',
             method : "GET",
@@ -23,6 +26,7 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
     };
     
     var get = function(){
+        //se esiste session e non è un array vuoto
         if('session' in $sessionStorage && $sessionStorage.session.length){
             return angular.fromJson($sessionStorage.session);
         }else

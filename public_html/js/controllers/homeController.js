@@ -12,20 +12,21 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
     vm.isAdmin = function(){
         return SessionService.isAdmin();
     };
-    
+     
     vm.init = function(){
             
         vm.myVar = false;
+        
         vm.parameters = {
            logo: "img/logo_villaggio.jpg",
            scuola: 'Villaggio del Ragazzo',
            decreto: 'Riconoscimento Giuridico con decreto del Presidente della Repubblica N. 1364 del first Ottobre 1951',
            sottotitolo: 'centro formazione professionale',
            centroPagina: 'Registro presenza allievi',
-           codice: '',
+           codice: 'nonLoSoIlCodice',
            title: 'PROGRAMMATORE SVILUPPATORE SOFTWARE',
-           start: '' ,
-           end:  ''
+           start: '2015-03-25' ,
+           end:  '2015-03-25'
        };
     };
     
