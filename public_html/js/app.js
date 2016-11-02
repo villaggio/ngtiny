@@ -1,9 +1,3 @@
-var app = angular.module('ngtiny', ['ngRoute']);
-app.conf=function ($routeProvider) {
-  $routeProvider
-    .when('/', {
-      //controller: 'HomeController',
-      templateUrl: 'views/home.html'
 var app = angular.module('ngtiny', ['ngRoute', 'ngStorage']);
 app.conf=function ($routeProvider) { 
   $routeProvider 
