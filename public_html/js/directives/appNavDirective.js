@@ -25,17 +25,30 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', '$
         function( $scope, $location, SessionService, $route, $uibModal ) { 
   var vm = this;
   vm.pages = [];
+  vm.defaultPages = [{
+        "url": "#/",
+        "title": "Home"
+    }, {
+        "url": "#/credits",
+        "title": "Crediti"
+    }];
   vm.session = null;
   
   vm.loadSession = function(){
-      vm.pages.length = 0;
-      vm.session = SessionService.get();
-      if(vm.session){
-        for(i = 0; i < vm.session.pages.length ; i++){
-            vm.pages.push(vm.session.pages[i]);
-        }
+    var pages = [];
+    var reload = false;
+    vm.pages.length = 0;
+    vm.session = SessionService.get();
+    if(vm.session){
+        pages = vm.session.pages;
+        reload = true;
+    }else{
+        pages = vm.defaultPages;
     }
-    $route.reload();
+    for(i = 0; i < pages.length ; i++){
+        vm.pages.push(pages[i]);
+    }
+    if(reload) $route.reload();
   }
 
   vm.editProfile = function() {
