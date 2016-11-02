@@ -48,6 +48,7 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', '$
                   title : "Profilo Utente",
                   reset : function(){},
                   user : SessionService.get(),
+                  
                   isAdmin : SessionService.isAdmin()
              }
           }

@@ -2,8 +2,10 @@
 	"result": {
 		"session": {
 			"name": "Alessandro",
+                        "surname": "Magno",
                         "role": "admin",
 			"token": "38vmoe95kdp",
+                        "mail": "ale.ad@ad.com",
 			"pages": [{
 				"url": "#/",
 				"title": "Home"

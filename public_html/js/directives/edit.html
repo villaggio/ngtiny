@@ -10,18 +10,26 @@
               <label for="exampleName1">Nome</label>
               <input type="text" class="form-control" id="exampleName1" name="name" ng-model="user.name" placeholder="Inserire un nome">
         </div>
-         <div ng-if="isAdmin" class="form-group col-md-6 col-sm-12">
-              <label for="exampleSurname1">Ruolo</label>
-              <input type="text" class="form-control" id="exampleSurname1" name="role" ng-model="user.role" placeholder="Inserire un ruolo">
-        </div>
          <div class="form-group col-md-6 col-sm-12">
-              <label for="exampleSurname1">Email</label>
-              <input class="form-control">
+              <label for="exampleName1">Cognome</label>
+              <input type="text" class="form-control" id="exampleSurname1" name="surname" ng-model="user.surname" placeholder="Inserire un cognome">
         </div>
-  
-        <div class="form-group col-md-6 col-sm-12">
-              <label for="exampleId1">Nato il</label>
-              <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="user.borndate" placeholder="gg/mm/aaaa">
+         <div ng-if="isAdmin" class="form-group col-md-6 col-sm-12">
+             <label for="exampleRole">Ruolo</label> 
+             <select class="form-control" id="exampleRole">
+              <option>Admin</option>
+              <option>Teacher</option>
+              <option>Guest</option>
+              </select>
+           <!--   <input type="text" class="form-control" id="exampleSurname1" name="role" ng-model="user.role" placeholder="Inserire un ruolo"> -->
+        </div>
+         <div ng-if="isAdmin" class="form-group col-md-6 col-sm-12">
+              <label for="exampleSurname1">Password</label>
+              <input type="text" class="form-control" id="exampleSurname1" name="token" ng-model="user.token" placeholder="Inserire la password">
+        </div>        
+         <div class="form-group col-md-6 col-sm-12">
+              <label for="exampleSurname1" >Email</label>
+              <input class="form-control" name="mail" ng-model="user.mail">
         </div>
     </form>
 </div>
