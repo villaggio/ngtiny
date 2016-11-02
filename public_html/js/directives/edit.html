@@ -5,28 +5,32 @@
    <h4 id="myModalLabel" class="modal-title">{{ title }}</h4>
 </div>
 <div class="modal-body">
-    <form class="well well-sm panel-body">
-         <div class="form-group col-md-6 col-sm-12">
+    <form class="well well-sm panel-body" novalidate name="edit" ng-submit="edit(edit.$valid)">
+         <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : edit.name.$invalid && !edit.name.$pristine }">
               <label for="exampleName1">Nome</label>
-              <input type="text" class="form-control" id="exampleName1" name="name" ng-model="user.name" placeholder="Inserire un nome">
+              <input type="text" required class="form-control input-sm" id="exampleName1" name="name" ng-model="user.name" ng-minlength="3" ng-maxlength="15" placeholder="Inserire un nome">
         </div>
-         <div ng-if="isAdmin" class="form-group col-md-6 col-sm-12">
-              <label for="exampleSurname1">Ruolo</label>
-              <input type="text" class="form-control" id="exampleSurname1" name="role" ng-model="user.role" placeholder="Inserire un ruolo">
+        <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : edit.surname.$invalid && !edit.surname.$pristine }">
+              <label for="exampleName3">Cognome</label>
+              <input type="text" required class="form-control input-sm" id="exampleName" name="surname" ng-model="user.surname" ng-minlength="3" ng-maxlength="20" placeholder="Inserire un cognome">
         </div>
-         <div class="form-group col-md-6 col-sm-12">
+         <div ng-if="isAdmin" class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : edit.role.$invalid && !edit.role.$pristine }">
+             <label for="sel1">Inserire un Ruolo:</label>
+             <select class="form-control" id="sel1">
+                 <option value="Admin">Admin</option>
+                 <option value="Manager">Manager</option>
+                 <option value="Guest">Guest</option>
+             </select>
+        </div>
+         <div class="form-group col-md-6 col-sm-12"  ng-class="{ 'has-error' : edit.email.$invalid && !edit.email.$pristine }">
               <label for="exampleSurname1">Email</label>
-              <input class="form-control">
+              <span class="input-group-addon" tooltip data-placement="left" title="Email obblibatoria"><i class="fa fa-envelope-o"></i></span>
+              <input size="10" name="email" required type="email" class="form-control input-sm" ng-model="user.mail" placeholder="Email">
         </div>
-  
-        <div class="form-group col-md-6 col-sm-12">
-              <label for="exampleId1">Nato il</label>
-              <input type="date" class="form-control" data-date-format="dd/mm/yy" data-language="it" name="born" ng-model="user.borndate" placeholder="gg/mm/aaaa">
-        </div>
-    </form>
+  </form>
 </div>
 <div class="modal-footer">
-   <button ng-click="ok()" class="btn btn-info">Salva</button>
+   <button ng-click="ok()" class="btn btn-info" ng-disabled="edit.$invalid">Salva</button>
    <button ng-if="reset" ng-click="reset()" class="btn btn-info">Reset</button>
    <button ng-click="cancel()" class="btn btn-inverse">Chiudi</button>
 </div>

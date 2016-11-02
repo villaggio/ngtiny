@@ -2,6 +2,7 @@
 	"result": {
 		"session": {
 			"name": "Alessandro",
+                        "surname": "Villa",
                         "role": "admin",
 			"token": "38vmoe95kdp",
 			"pages": [{
