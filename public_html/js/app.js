@@ -4,6 +4,12 @@ app.conf=function ($routeProvider) {
     .when('/', {
       //controller: 'HomeController',
       templateUrl: 'views/home.html'
+var app = angular.module('ngtiny', ['ngRoute', 'ngStorage']);
+app.conf=function ($routeProvider) { 
+  $routeProvider 
+    .when('/', { 
+      controller: 'HomeController', 
+      templateUrl: 'views/home.html' 
     })
     .when('/students', {
       controller: 'StudentsController',
