@@ -8,7 +8,8 @@
             <div ng-if="nav.session" class="nav navbar-nav">
                 <div class="h5">
                     Bentornato/a <strong>{{ nav.session.name }}</strong>
-                    <button type="button" class="btn btn-sm btn-info" ng-click="nav.signout()">Esci</button>
+                    <button type="button" class="btn btn-sm btn-info" ng-click="nav.editProfile()">Profilo</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="nav.signout()">Esci</button>
                     &nbsp;&nbsp;
                 </div>
             </div>
@@ -24,7 +25,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-sm btn-primary" ng-disabled="signin.$invalid">Entra</button>
-                <button type="button" class="btn btn-sm btn-success">Registrati</button>
+                <button type="button" class="btn btn-sm btn-success" ng-click="nav.register()">Registrati</button>
             </form>
         </div>
 </nav>

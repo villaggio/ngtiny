@@ -5,7 +5,24 @@ app.directive('appNav', function() {
   }; 
 });
 
-app.controller('appNavController', [ '$scope', '$location', 'SessionService', function($scope, $location, SessionService) { 
+app.controller('ProfileController', ['$scope', '$uibModalInstance', 'params',
+    function($scope, $uibModalInstance, params) {
+  var init = function(){
+    $.each(params, function(i,v){
+        $scope[i] = v;
+     });
+  }
+  $scope.ok = function () {
+    $uibModalInstance.close('closed');
+  };
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+  init();
+}]);
+
+app.controller('appNavController', [ '$scope', '$location', 'SessionService', '$route', '$uibModal',
+        function( $scope, $location, SessionService, $route, $uibModal ) { 
   var vm = this;
   vm.pages = [];
   vm.session = null;
@@ -17,8 +34,45 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', fu
         for(i = 0; i < vm.session.pages.length ; i++){
             vm.pages.push(vm.session.pages[i]);
         }
-    } 
+    }
+    $route.reload();
   }
+
+  vm.editProfile = function() {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'js/directives/edit.html',
+          controller: 'ProfileController',
+          resolve: {
+              params : function(){return {
+                  title : "Profilo Utente",
+                  reset : function(){},
+                  user : SessionService.get(),
+                  isAdmin : SessionService.isAdmin()
+             }
+          }
+        }});
+        return modalInstance;
+  };
+  
+  vm.saveProfile = function(user){
+      SessionService.saveProfile( {data: {user:user}} );
+  }
+  
+  vm.register = function() {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'js/directives/edit.html',
+          controller: 'ProfileController',
+          resolve: {
+              params : function(){return {
+                title: "Modulo di registrazione"
+              }}
+            }
+        })
+ 
+        return modalInstance;
+  };
   
   vm.init = function(){
       vm.loadSession();

@@ -1,4 +1,4 @@
-app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http, URL, $sessionStorage ){
+app.service('SessionService', [ '$http', 'URL', '$sessionStorage', function( $http, URL, $sessionStorage ){
     
     var onError = function(response)
         {console.log("Errore di chiamata: ", response)};
@@ -9,6 +9,28 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
             $sessionStorage.session = session;
         }
         
+    var signup = function(request, onSuccess){
+        var data = request? request.data : {};
+        var onReady = onSuccess;
+        $http({
+            url : URL.REST + '/signup.json',
+            method : "GET",
+            data : data,
+            dataType : "json",
+        }).then(onReady, onError);
+    }
+    
+    var saveProfile = function(request, afterReady){
+        var data = request? request.data : {};
+        afterReady = afterReady?afterReady:function(){};
+        var onReady = function(responce){onSuccess(responce); afterReady();}
+        $http({
+            url : URL.REST + '/save_profile.json',
+            method : "GET",
+            data : data,
+            dataType : "json",
+        }).then(onReady, onError);
+    }
 
     var signin = function(request, afterReady){
         var data = request? request.data : {};
@@ -42,7 +64,8 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
         signin : signin,
         signout : signout,
         get: get,
-        isAdmin : isAdmin
+        isAdmin : isAdmin,
+        signup: signup
     };
 }]);
 
