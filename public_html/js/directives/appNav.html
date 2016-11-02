@@ -1,7 +1,16 @@
-<nav ng-controller="appNavController as nav" class="navbar navbar-default navbar-fixed-top" >
+<div class="container-fluid">
+<div class="navbar-header">
+    <nav ng-controller="appNavController as nav" class="navbar navbar-default navbar-fixed-top col-sm-12 col-md-12" >
+        <!-- viva gli esperimenti -->
+        <button type="button" ng-init="isCollapsed=true" ng-click="isCollapsed = !isCollapsed"> <!--class="navbar-toggle" data-toggle="collapse" data-target="myNavbar">-->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+        </button>
+        <div class="nav-collapse" uib-collapse="isCollapsed"> <!--class="collapse navbar-collapse" id="myNavbar">-->
 	<ul class="nav navbar-nav">
 	  <li class="" ng-repeat="item in nav.pages">
-		<a ng-href="{{ item.url }}">{{ item.title }}</a>
+		<a  ng-href="{{ item.url }}">{{ item.title }}</a>
 	  </li>
 	</ul>
         <div class="navbar-right">
@@ -27,7 +36,11 @@
                 <button type="button" class="btn btn-sm btn-success">Registrati</button>
             </form>
         </div>
-</nav>
+            </div>
+    </nav>
+
+</div>    
+</div>
 <!--p ng-show="singin.email.$invalid && !singin.email.$pristine" class="help-block alert alert-danger">Email richiesta!</p>
 <p ng-show="singin.password.$invalid && !singin.password.$pristine" class="help-block alert alert-danger">Password richiesta!</p>
 <p ng-show="singin.password.$error.minlength && !singin.password.$pristine" class="help-block alert alert-danger">Password troppo corta!</p>
