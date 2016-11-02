@@ -1,8 +1,12 @@
-app.controller('AgendaController', ['$scope', 'AgendaService', function($scope, AgendaService) {
+app.controller('AgendaController', ['$scope', 'AgendaService', 'SessionService', function($scope, AgendaService, SessionService) {
     var vm = $scope;
     
     vm.agenda = [];
     vm.day = {};
+    
+    vm.isAdmin = function(){
+        return SessionService.isAdmin();
+    };
 
     vm.init = function(){
         vm.resetAgenda();
@@ -61,7 +65,8 @@ app.controller('AgendaController', ['$scope', 'AgendaService', function($scope, 
            vm.agenda.push(agenda[i]);
            for(var j=0;j<agenda[i].events.length;j++)
                vm.day.events.push(agenda[i].events[j]);
-        }        
+        }   
+        vm.resetEvents();
     };
     
 
@@ -119,6 +124,7 @@ app.controller('AgendaController', ['$scope', 'AgendaService', function($scope, 
     vm.saveEvent = function(index){
         if(index>=0){
             vm.day.events.splice(index, 1, vm.getEvent(vm.event));
+            vm.resetEvent();
         }else{
             vm.day.events.push(vm.getEvent(vm.event));
             vm.resetEvent();
@@ -140,9 +146,9 @@ app.controller('AgendaController', ['$scope', 'AgendaService', function($scope, 
         vm.agenda.splice(index,1);
     };
 
-    vm.deleteEvent = function(index){
+    vm.deleteEvent = function(parent, index){
         vm.resetEvent();
-        vm.day.events.splice(index,1);
+        vm.agenda[parent].events.splice(index,1);
     };
     
     vm.init();

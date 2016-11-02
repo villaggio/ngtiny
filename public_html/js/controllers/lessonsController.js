@@ -41,6 +41,8 @@ app.controller('LessonsController', ['$scope', 'LessonsService', 'SessionService
            for(var j=0;j<students[i].presTot.length;j++)
                 vm.student.presTot.push(students[i].presTot[j]);
         }
+        vm.resetPresTot();
+        //vm.student.presTot.length = 0;
     };
     vm.resetStudTot = function(){
         LessonsService.getStudTot(null, populateStudTot);

@@ -25,8 +25,8 @@ app.controller('HomeController', ['$scope', 'SessionService', function($scope, S
            centroPagina: 'Registro presenza allievi',
            codice: 'nonLoSoIlCodice',
            title: 'PROGRAMMATORE SVILUPPATORE SOFTWARE',
-           start: '2015-03-25' ,
-           end:  '2015-03-25'
+           start: '2016-09-04T22:00:00.000Z' ,
+           end:  '2017-02-23T23:00:00.000Z'
        };
     };
     

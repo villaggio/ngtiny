@@ -5,7 +5,7 @@ app.directive('appNav', function() {
   }; 
 });
 
-app.controller('appNavController', [ '$scope', '$location', 'SessionService', function($scope, $location, SessionService) { 
+app.controller('appNavController', [ '$scope', '$location', 'SessionService', '$route', function($scope, $location, SessionService, $route) { 
   var vm = this;
   vm.pages = [];
   vm.session = null;
@@ -17,7 +17,8 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', fu
         for(i = 0; i < vm.session.pages.length ; i++){
             vm.pages.push(vm.session.pages[i]);
         }
-    } 
+    }
+    $route.reload();
   };
   
   vm.init = function(){

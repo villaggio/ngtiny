@@ -36,9 +36,9 @@
     <br/><br/>
     <input type="text" size="50" placeholder="Nome corso" ng-model="form.title"/>
     <br/><br/>
-    <input type="date" placeholder="Inizio corso" ng-model="form.start"/> 
+    <input type="date" date-format="dd/mm/yy" placeholder="Inizio corso" ng-model="form.start"/> 
     <br/><br/>
-    <input type="date" placeholder="Fine corso" ng-model="form.end"/> 
+    <input type="date" date-format="dd/mm/yy" placeholder="Fine corso" ng-model="form.end"/> 
     <br/><br/>
     <button ng-click="saveData()">Salva</button>
 </form>
