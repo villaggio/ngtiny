@@ -90,7 +90,7 @@
 
     //done
     vm.deleteLesson = function(index){
-        if(vm.lesson.index == index)
+        if(vm.lesson.index === index)
             vm.resetLesson();
         vm.lessons.splice(index,1);
     };

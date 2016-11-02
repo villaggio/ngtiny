@@ -31,7 +31,7 @@ app.controller('appNavController', [ '$scope', '$location', 'SessionService', fu
   
   vm.signin = function(valid){
     if(valid){
-        SessionService.signin({data: vm.user}, vm.loadSession);
+        SessionService.signin({data: vm.user}, vm.loadSession, '/signin2.json');
     }else
         alert("Autenticazione errata");
   }

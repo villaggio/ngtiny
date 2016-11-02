@@ -1,0 +1,25 @@
+{
+	"result": {
+		"session": {
+			"name": "Matteo",
+                        "role": "guest",
+			"token": "39vmoe96kdp",
+			"pages": [{
+				"url": "#/",
+				"title": "Home"
+			}, {
+				"url": "#/students",
+				"title": "Anagrafica"
+			}, {
+				"url": "#/agenda",
+				"title": "Calendario"
+			},{
+				"url": "#/lessons",
+				"title": "Lezioni"
+			},{
+				"url": "#/credits",
+				"title": "Crediti"
+			}]
+		}
+	}
+}

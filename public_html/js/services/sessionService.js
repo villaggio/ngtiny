@@ -9,13 +9,13 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
             $sessionStorage.session = session;
         }
         
-
-    var signin = function(request, afterReady){
+        
+    var signin = function(request, afterReady, source){
         var data = request? request.data : {};
         afterReady = afterReady?afterReady:function(){};
-        var onReady = function(responce){onSuccess(responce); afterReady();}
+        var onReady = function(response){onSuccess(response); afterReady();}
         $http({
-            url : URL.REST + '/signin.json',
+            url : URL.REST + (source? source : '/signin.json'),
             method : "GET",
             data : data,
             dataType : "json",
@@ -30,7 +30,7 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
     }
     
     var isAdmin = function(){
-        return get()? (get().role == 'admin'): false;
+        return get()? (get().role === 'admin'): false;
     }
     
     var signout = function(afterReady){
@@ -43,6 +43,7 @@ app.service('SessionService', [ '$http', 'URL', '$localStorage', function( $http
         signout : signout,
         get: get,
         isAdmin : isAdmin
+        
     };
 }]);
 
