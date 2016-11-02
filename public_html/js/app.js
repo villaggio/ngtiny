@@ -1,4 +1,4 @@
-var app = angular.module('ngtiny', ['ngRoute']);
+var app = angular.module('ngtiny', ['ngRoute', 'ngStorage']);
 app.conf=function ($routeProvider) { 
   $routeProvider 
     .when('/', { 

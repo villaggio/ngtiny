@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', function($scope) {
+app.controller('HomeController', ['$scope', 'SessionService', function($scope, SessionService) {
    var vm = $scope;
    
    vm.parameters = {};
@@ -8,6 +8,10 @@ app.controller('HomeController', ['$scope', function($scope) {
         vm.myVar = !vm.myVar;
         vm.showData();
     };
+   
+    vm.isAdmin = function(){
+        return SessionService.isAdmin();
+    }
    
    vm.init = function(){
         vm.myVar = false;

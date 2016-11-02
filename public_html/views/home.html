@@ -29,7 +29,7 @@
 
 <br><br>
 
-<button ng-click="showHide()">Modifica come admin</button>
+<button ng-if="isAdmin()" ng-click="showHide()">Modifica come admin</button>
 <br>
 <form ng-show="myVar">
     <input type="text" placeholder="Codice corso n°" ng-model="form.codice"> </input>
